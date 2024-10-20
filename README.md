@@ -43,11 +43,11 @@ In today's fragmented and disconnected caregiver market, trust deficits hinder h
 
 | ![Name 1](./images/image1.jpg) | ![Name 2](./images/image2.jpg) | ![Name 3](./images/image3.jpg) |
 |:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| **Name 1** <br> Role 1 <br> [email@example.com](mailto:email@example.com) | **Name 2** <br> Role 2 <br> [email@example.com](mailto:email@example.com) | **Name 3** <br> Role 3 <br> [email@example.com](mailto:email@example.com) |
+| **Fabiola** <br> Role 1 <br> [email@example.com](mailto:email@example.com) | **Jonathan** <br> Role 2 <br> [email@example.com](mailto:email@example.com) | **Lis** <br> Role 3 <br> [email@example.com](mailto:email@example.com) |
 
 | ![Name 4](./images/image4.jpg) | ![Name 5](./images/Luisdi98.png) | ![Name 6](./images/image6.jpg) |
 |:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| **Name 4** <br> Role 4 <br> [email@example.com](mailto:email@example.com) | **Luis Diego Mora Aguilar** <br> Frontend developer <br> [aguilarluisdi@gmail.com](mailto:aguilarluisdi@gmail.com) | **Roberto Solano** <br> Blockchain Developer <br> [robertosolano@duck.com](mailto:robertosolano@duck.com) |
+| **Lindsay** <br> Role 4 <br> [email@example.com](mailto:email@example.com) | **Luis Diego Mora Aguilar** <br> Frontend developer <br> [aguilarluisdi@gmail.com](mailto:aguilarluisdi@gmail.com) | **Roberto Solano** <br> Blockchain Developer <br> [robertosolano@duck.com](mailto:robertosolano@duck.com) |
 
 ## Project Structure
 #### to be completed...
