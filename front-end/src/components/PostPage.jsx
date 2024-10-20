@@ -1,33 +1,34 @@
 // src/components/PostsPage.js
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Button, TextField } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Typography } from '@mui/material';
 
 const PostsPage = () => {
-  // Stub data: Lista de publicaciones de trabajo simuladas
+  // Stub data: Lista de publicaciones de trabajo simuladas con nuevas columnas
   const stubPosts = [
     {
       id: 1,
       title: 'Frontend Developer',
-      description: 'Looking for a Frontend Developer with experience in React.',
-      salary: '$60,000/year',
+      date: '2024-01-10',
+      status: 'Open',
     },
     {
       id: 2,
       title: 'UI/UX Designer',
-      description: 'Need a UI/UX Designer to work on mobile and web apps.',
-      salary: '$50,000/year',
+      date: '2024-01-08',
+      status: 'Closed',
     },
     {
       id: 3,
       title: 'Backend Developer',
-      description: 'Experienced Backend Developer required for cloud services.',
-      salary: '$70,000/year',
+      date: '2024-01-15',
+      status: 'Open',
     },
   ];
 
   const [filter, setFilter] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(stubPosts);
 
+  // Filtra las publicaciones por el título
   const handleFilterChange = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setFilter(searchValue);
@@ -51,26 +52,26 @@ const PostsPage = () => {
         margin="normal"
       />
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        {filteredPosts.map((post) => (
-          <Card key={post.id}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {post.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" gutterBottom>
-                {post.description}
-              </Typography>
-              <Typography variant="subtitle2" color="textSecondary" gutterBottom>
-                Salary: {post.salary}
-              </Typography>
-              <Button variant="contained" color="primary" style={{ marginTop: '10px' }}>
-                Apply
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <TableContainer component={Paper} style={{ marginTop: '20px' }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Ocupación</TableCell>
+              <TableCell>Fecha de Publicación</TableCell>
+              <TableCell>Estado</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredPosts.map((post) => (
+              <TableRow key={post.id}>
+                <TableCell>{post.title}</TableCell>
+                <TableCell>{post.date}</TableCell>
+                <TableCell>{post.status}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };
