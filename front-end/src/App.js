@@ -1,9 +1,13 @@
 import React from "react";
-import "./App.css";
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PostsPage from './components/PostPage';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { ApplicantsModal } from "./Modals/ApplicantsModal";
+import "./App.css";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,7 +24,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      {/* <div className="App">
         <header className="App-header">
           <Typography variant="h3" fontWeight="bold" color="primary">
             Server Trust
@@ -30,7 +34,15 @@ function App() {
           open={jobApplicantsModalOpen}
           handleClose={() => setJobApplicantsModalOpen(false)}
         />
-      </div>
+      </div> */}
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<></>} />
+          <Route path="/posts" element={<PostsPage />} />
+        </Routes>
+      </Router>
+
     </ThemeProvider>
   );
 }
