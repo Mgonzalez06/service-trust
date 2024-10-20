@@ -1,33 +1,40 @@
 // src/components/PostsPage.js
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Button, TextField } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Typography, Button } from '@mui/material';
 
 const PostsPage = () => {
-  // Stub data: Lista de publicaciones de trabajo simuladas
+  // Stub data actualizada con más columnas
   const stubPosts = [
     {
       id: 1,
       title: 'Frontend Developer',
-      description: 'Looking for a Frontend Developer with experience in React.',
+      date: '2024-01-10',
+      status: 'Open',
       salary: '$60,000/year',
+      description: 'Frontend Developer with React experience.',
     },
     {
       id: 2,
       title: 'UI/UX Designer',
-      description: 'Need a UI/UX Designer to work on mobile and web apps.',
+      date: '2024-01-08',
+      status: 'Closed',
       salary: '$50,000/year',
+      description: 'UI/UX Designer for mobile and web apps.',
     },
     {
       id: 3,
       title: 'Backend Developer',
-      description: 'Experienced Backend Developer required for cloud services.',
+      date: '2024-01-15',
+      status: 'Open',
       salary: '$70,000/year',
+      description: 'Backend Developer with cloud services experience.',
     },
   ];
 
   const [filter, setFilter] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(stubPosts);
 
+  // Maneja el filtro de búsqueda
   const handleFilterChange = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setFilter(searchValue);
@@ -37,8 +44,17 @@ const PostsPage = () => {
     setFilteredPosts(filtered);
   };
 
+  // Funciones stub para manejar los botones (simulando acciones)
+  const handleApply = (postId) => {
+    alert(`Applied to job ID: ${postId}`);
+  };
+
+  const handleViewDetails = (postId) => {
+    alert(`Viewing details for job ID: ${postId}`);
+  };
+
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Available Jobs
       </Typography>
@@ -51,26 +67,41 @@ const PostsPage = () => {
         margin="normal"
       />
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        {filteredPosts.map((post) => (
-          <Card key={post.id}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {post.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" gutterBottom>
-                {post.description}
-              </Typography>
-              <Typography variant="subtitle2" color="textSecondary" gutterBottom>
-                Salary: {post.salary}
-              </Typography>
-              <Button variant="contained" color="primary" style={{ marginTop: '10px' }}>
-                Apply
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <TableContainer component={Paper} style={{ marginTop: '20px' }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Ocupación</TableCell>
+              <TableCell>Fecha de Publicación</TableCell>
+              <TableCell>Estado</TableCell>
+              <TableCell>Salario</TableCell>
+              <TableCell>Descripción</TableCell>
+              <TableCell>Acción</TableCell> {/* Columna para acciones */}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredPosts.map((post) => (
+              <TableRow key={post.id}>
+                <TableCell>{post.title}</TableCell>
+                <TableCell>{post.date}</TableCell>
+                <TableCell>{post.status}</TableCell>
+                <TableCell>{post.salary}</TableCell>
+                <TableCell>{post.description}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleApply(post.id)}
+                    disabled={post.status === 'Closed'}
+                  >
+                    Aplicar
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };
