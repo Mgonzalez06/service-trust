@@ -1,7 +1,9 @@
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import PostsPage from "./components/PostPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import React from "react";
+import { Dashboard } from "./components/Dashboard/Dashboard";
+import { Login } from "./components/Login/Login";
+import { SignUp } from "./components/SignUp/SignUp";
 
 const theme = createTheme({
   palette: {
@@ -17,13 +19,14 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <header className="App-header">
-          <Typography variant="h3" fontWeight="bold" color="primary">
-            Server Trust
-          </Typography>
-        </header>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
