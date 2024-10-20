@@ -13,10 +13,10 @@ export const Header = () => {
     window.location.href = link;
   };
   return (
-    <Stack display="flex" flexDirection="row" columnGap={20} ml={20}>
+    <Stack display="flex" flexDirection="row" columnGap={20} ml={5}>
       {headerItems.map((item) => (
         <Typography
-          variant="h5"
+          variant="h6"
           key={item.title}
           onClick={() => handleRedirect(item.link)}
           sx={{

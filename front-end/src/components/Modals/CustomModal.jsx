@@ -8,7 +8,13 @@ const StyledModal = styled(Modal)(({ theme }) => ({
   border: "2px solid #fff",
 }));
 
-export const CustomModal = ({ open, handleClose, title, children }) => {
+export const CustomModal = ({
+  open,
+  handleClose,
+  title,
+  children,
+  showClose = true,
+}) => {
   return (
     <StyledModal open={open} onClose={handleClose}>
       <Box
@@ -30,11 +36,13 @@ export const CustomModal = ({ open, handleClose, title, children }) => {
           {title}
         </Typography>
         <Box sx={{ p: 2 }}>{children}</Box>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Button onClick={handleClose} variant="contained">
-            Close
-          </Button>
-        </Box>
+        {showClose && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Button onClick={handleClose} variant="contained">
+              Close
+            </Button>
+          </Box>
+        )}
       </Box>
     </StyledModal>
   );
