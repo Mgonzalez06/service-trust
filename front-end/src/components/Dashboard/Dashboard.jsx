@@ -3,11 +3,12 @@ import { ApplicantsModal } from "../Modals/ApplicantsModal";
 import logo from "../../Images/logo.png";
 import { Header } from "./Header";
 
-const BlueContainer = styled(Box)(() => ({
+export const BlueContainer = styled(Box)(() => ({
   backgroundColor: "#005d96",
   height: "40%",
   textAlign: "center",
   position: "relative",
+  width: "100%",
 }));
 
 const HeaderContainer = styled(Box)(() => ({

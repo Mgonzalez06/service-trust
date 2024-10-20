@@ -1,4 +1,5 @@
 import { Stack, Typography } from "@mui/material";
+
 const headerItems = [
   { title: "Home", link: "/dashboard" },
   { title: "Posts", link: "/posts" },
