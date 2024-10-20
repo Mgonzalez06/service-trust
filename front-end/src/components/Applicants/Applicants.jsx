@@ -2,7 +2,7 @@ import { CustomTable } from "../CustomTable/CustomTable";
 import { Button, Box } from "@mui/material";
 import { useState } from "react";
 import { ProfileModal } from "../Modals/ProfileModal";
-import { applicantsList } from "../constants";
+import { applicantsList } from "../../constants";
 
 const columns = [
   { label: "Name", key: "name" },
