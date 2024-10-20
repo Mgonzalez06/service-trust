@@ -1,4 +1,3 @@
-// src/components/PostsPage.js
 import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Typography, Button } from '@mui/material';
 
@@ -44,7 +43,6 @@ const PostsPage = () => {
     setFilteredPosts(filtered);
   };
 
-  // Funciones stub para manejar los botones (simulando acciones)
   const handleApply = (postId) => {
     alert(`Applied to job ID: ${postId}`);
   };
@@ -76,7 +74,7 @@ const PostsPage = () => {
               <TableCell>Estado</TableCell>
               <TableCell>Salario</TableCell>
               <TableCell>Descripción</TableCell>
-              <TableCell>Acción</TableCell> {/* Columna para acciones */}
+              <TableCell>Acción</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
