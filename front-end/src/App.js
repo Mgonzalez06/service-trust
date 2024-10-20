@@ -1,8 +1,9 @@
+import React from "react";
 import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import React from "react";
-
+import { Typography } from "@mui/material";
+import { useState } from "react";
+import { ApplicantsModal } from "./Modals/ApplicantsModal";
 const theme = createTheme({
   palette: {
     primary: {
@@ -15,6 +16,8 @@ const theme = createTheme({
 });
 
 function App() {
+  const [jobApplicantsModalOpen, setJobApplicantsModalOpen] = useState(true);
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -23,6 +26,10 @@ function App() {
             Server Trust
           </Typography>
         </header>
+        <ApplicantsModal
+          open={jobApplicantsModalOpen}
+          handleClose={() => setJobApplicantsModalOpen(false)}
+        />
       </div>
     </ThemeProvider>
   );
