@@ -35,9 +35,9 @@ export const Login = () => {
             Login
           </Typography>
           <Typography variant="h6" mt={4} sx={{ color: "black" }}>
-            Username
+            Email
           </Typography>
-          <Input type="text" />
+          <Input type="email" />
           <Typography variant="h6" mt={2} sx={{ color: "black" }}>
             Password
           </Typography>
