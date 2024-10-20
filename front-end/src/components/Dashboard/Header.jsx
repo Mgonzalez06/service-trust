@@ -22,6 +22,7 @@ export const Header = () => {
           sx={{
             cursor: item.link ? "pointer" : "default",
             color: "white",
+            fontWeight: "100",
             "&:hover": {
               textDecoration: item.link ? "underline" : "none",
             },

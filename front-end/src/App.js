@@ -3,6 +3,8 @@ import PostsPage from "./components/PostPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { Login } from "./components/Login/Login";
+import { SignUp } from "./components/SignUp/SignUp";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -22,7 +24,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<></>} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </Router>
     </ThemeProvider>

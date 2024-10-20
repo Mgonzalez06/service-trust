@@ -1,7 +1,7 @@
 import { useMediaQuery, Stack, Typography, Input, Button } from "@mui/material";
 import { BlueContainer } from "../Dashboard/Dashboard";
 
-export const Login = () => {
+export const SignUp = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
@@ -32,39 +32,21 @@ export const Login = () => {
             textAlign="center"
             sx={{ color: "black" }}
           >
-            Login
+            Sign Up
           </Typography>
           <Typography variant="h6" mt={4} sx={{ color: "black" }}>
-            Username
+            First Name
           </Typography>
           <Input type="text" />
           <Typography variant="h6" mt={2} sx={{ color: "black" }}>
-            Password
+            Last Name
           </Typography>
-          <Input type="password" />
+          <Input type="text" />
+          <Typography variant="h6" mt={2} sx={{ color: "black" }}>
+            Email
+          </Typography>
+          <Input type="email" />
           <Button variant="contained" sx={{ mt: 5 }}>
-            Login
-          </Button>
-          <Typography
-            variant="body2"
-            mt={3}
-            textAlign="center"
-            sx={{ color: "black" }}
-          >
-            Don't have an account?
-          </Typography>
-          <Button
-            variant="text"
-            sx={{
-              color: "blue",
-              mt: 1,
-              "&:hover": {
-                textDecoration: "underline",
-                backgroundColor: "transparent",
-              },
-            }}
-            onClick={() => (window.location.href = "/sign-up")}
-          >
             Sign Up
           </Button>
         </Stack>
