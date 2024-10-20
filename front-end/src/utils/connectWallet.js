@@ -10,7 +10,6 @@ export async function connectWallet(connected, setConnected, setWalletAddress) {
     setWalletAddress(_walletAddress);
   } else {
     const newWallet = createNewWallet();
-    // Disconnect the wallet
     setConnected(true);
     setWalletAddress(newWallet.address);
   }

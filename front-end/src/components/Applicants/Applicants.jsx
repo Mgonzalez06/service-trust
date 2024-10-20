@@ -6,7 +6,6 @@ import { applicantsList } from "../../constants";
 
 const columns = [
   { label: "Name", key: "name" },
-  { label: "Applied On", key: "appliedOn" },
   { label: "", key: "action" },
 ];
 
