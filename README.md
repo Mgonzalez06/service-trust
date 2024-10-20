@@ -45,9 +45,9 @@ In today's fragmented and disconnected caregiver market, trust deficits hinder h
 |:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | **Name 1** <br> Role 1 <br> [email@example.com](mailto:email@example.com) | **Name 2** <br> Role 2 <br> [email@example.com](mailto:email@example.com) | **Name 3** <br> Role 3 <br> [email@example.com](mailto:email@example.com) |
 
-| ![Name 4](./images/image4.jpg) | ![Name 5](./images/image5.jpg) | ![Name 6](./images/image6.jpg) |
+| ![Name 4](./images/image4.jpg) | ![Name 5](./images/Luisdi98.png) | ![Name 6](./images/image6.jpg) |
 |:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| **Name 4** <br> Role 4 <br> [email@example.com](mailto:email@example.com) | **Name 5** <br> Role 5 <br> [email@example.com](mailto:email@example.com) | **Name 6** <br> Role 6 <br> [email@example.com](mailto:email@example.com) |
+| **Name 4** <br> Role 4 <br> [email@example.com](mailto:email@example.com) | **Luis Diego Mora Aguilar** <br> Frontend developer <br> [aguilarluisdi@gmail.com](mailto:aguilarluisdi@gmail.com) | **Name 6** <br> Role 6 <br> [email@example.com](mailto:email@example.com) |
 
 ## Project Structure
 #### to be completed...
