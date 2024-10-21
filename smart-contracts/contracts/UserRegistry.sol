@@ -158,4 +158,7 @@ contract UserRegistry is Ownable, Pausable {
     function unpause() public onlyOwner {
         _unpause();  // Reanuda el contrato
     }
+
+    // PENDING: store reputation NFTs linked to that contract/wallet
+
 }
