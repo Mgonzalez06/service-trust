@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { CustomTable } from "../CustomTable/CustomTable";
 import { TextField, Typography, Button, Box, Stack } from "@mui/material";
 import { BlueContainer } from "../Dashboard/Dashboard";
@@ -13,7 +14,8 @@ const columns = [
   { label: "", key: "action" },
 ];
 
-const PostsPage = () => {
+export const PostsPage = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const user = "0x0969F4786c8FDC835e5Ba9cF6a734Cc9C005992f";
   const [filter, setFilter] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(postsList);
@@ -72,6 +74,14 @@ const PostsPage = () => {
           fullWidth
           margin="normal"
         />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate("/create_post")} // Redirect to create post page
+          style={{ marginBottom: "16px" }} // Add some space below the button
+        >
+          Create Post
+        </Button>
         <CustomTable columns={columns} data={postsWithHandlers} />
       </Box>
       <JobDescriptionModal
@@ -87,5 +97,3 @@ const PostsPage = () => {
     </Stack>
   );
 };
-
-export default PostsPage;

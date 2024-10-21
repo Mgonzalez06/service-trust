@@ -1,4 +1,3 @@
-// src/components/JobPostForm.js
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Container, Paper, Box } from '@mui/material';
 
