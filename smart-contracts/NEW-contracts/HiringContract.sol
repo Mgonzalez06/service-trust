@@ -8,12 +8,17 @@ import "./UserRegistry.sol";
 import "./JobListing.sol";
 
 contract HiringContract is Ownable, ReentrancyGuard {
+    // Reference to UserRegistry contract
     UserRegistry public userRegistry;
+    // Reference to JobListing contract
     JobListing public jobListing;
+    // Payment token contract
     IERC20 public paymentToken;
 
+    // Enum to represent contract statuses
     enum ContractStatus { Created, Started, Completed, Disputed, Cancelled }
 
+    // Structure to hold details of each hiring agreement
     struct HiringAgreement {
         uint256 jobId;
         address employer;
@@ -22,13 +27,16 @@ contract HiringContract is Ownable, ReentrancyGuard {
         uint256 startDate;
         uint256 endDate;
         ContractStatus status;
-        bool employerApproved; // used for function startAgreement
-        bool caregiverApproved; // used for function startAgreement
+        bool employerApproved;
+        bool caregiverApproved;
     }
 
+    // Mapping to store hiring agreements
     mapping(uint256 => HiringAgreement) public agreements;
+    // Counter to generate agreement IDs
     uint256 public agreementCounter;
 
+    // Events to log activities
     event AgreementCreated(uint256 indexed agreementId, uint256 indexed jobId, address employer, address caregiver);
     event AgreementApproved(uint256 indexed agreementId, address approver);
     event AgreementStarted(uint256 indexed agreementId, uint256 startDate);
@@ -72,7 +80,7 @@ contract HiringContract is Ownable, ReentrancyGuard {
         HiringAgreement storage agreement = agreements[_agreementId];
         require(agreement.caregiver == msg.sender, "Not the caregiver");
         require(agreement.status == ContractStatus.Created, "Invalid agreement status");
-
+        
         agreement.caregiverApproved = true;
         emit AgreementApproved(_agreementId, msg.sender);
 
@@ -151,4 +159,7 @@ contract HiringContract is Ownable, ReentrancyGuard {
             agreement.endDate,
             agreement.status,
             agreement.employerApproved,
-            agreement.caregiverAppr
+            agreement.caregiverApproved
+        );
+    }
+}
