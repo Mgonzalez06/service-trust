@@ -19,6 +19,7 @@ contract JobListing is Ownable, Pausable {
         uint8 rating;
     }
 
+
     //NFTReward public nftRewardContract;
     uint256 public jobCounter;
     mapping(uint256 => Job) public jobs;

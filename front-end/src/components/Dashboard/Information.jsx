@@ -11,11 +11,8 @@ export const Information = () => {
       textAlign={"center"}
     >
       <Box width="70%" py={3}>
-        <Typography variant="h3" sx={{ color: "gray" }}>
-          "At Service Trust, we are committed to bridging the gap between
-          individuals in need of caregiving and professional, trustworthy
-          caregivers. Our platform provides a seamless and secure means for
-          users to locate the care they require."
+        <Typography variant="h4" sx={{ color: "gray" }}>
+          "Our platform leverages NFTs to build and verify caregivers reputations, creating new economic opportunities. This enables caregivers from diverse backgrounds to showcase their skills and find employment, supporting economic mobility and empowering caregivers to grow their careers. While also reducing risks and helping elders get the proper care they need when in chronic sickness or age disability."
         </Typography>
         <Typography
           variant="h5"

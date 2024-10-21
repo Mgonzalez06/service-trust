@@ -6,8 +6,8 @@ import { Information } from "./Information";
 import { JobDescriptionModal } from "../Modals/JobDescriptionModal";
 
 export const BlueContainer = styled(Box)(() => ({
-  backgroundColor: "#005d96",
-  height: "90px",
+  backgroundColor: "#00244a",
+  height: "150px",
   textAlign: "center",
   position: "relative",
   width: "100%",
@@ -22,13 +22,13 @@ const HeaderContainer = styled(Box)(() => ({
 }));
 
 const LogoImage = styled("img")(() => ({
-  width: "110px",
-  height: "90px",
+  width: "170px",
+  height: "150px",
 }));
 
 const HomeImage = styled("img")(() => ({
   width: "100%",
-  height: "80vh",
+  height: "70vh",
   objectFit: "cover",
 }));
 
@@ -49,9 +49,7 @@ export const Dashboard = () => {
   return (
     <Box height="100vh">
       <BlueContainer>
-        <SignUpButton onClick={() => (window.location.href = "/sign-up")}>
-          Sign Up
-        </SignUpButton>
+
         <HeaderContainer alignItems="center">
           <LogoImage src={logo} alt="Logo Service Trust" />
           <Header />

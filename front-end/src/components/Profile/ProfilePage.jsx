@@ -4,8 +4,7 @@ import { Avatar, Typography, Container, Box, Paper, Card, CardMedia, CardContent
 const profileStub = {
   name: 'John Doe',
   avatar: 'https://imgs.search.brave.com/b5PdydEZTaC3RqF33bkMLiwhHVLC5O2WCDbnmgeqQCw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy81/LzVhL0pvaG5fRG9l/LF9ib3JuX0pvaG5f/Tm9tbWVuc2VuX0R1/Y2hhYy5qcGc',
-  skills: 'JavaScript, React, Node.js, Express, MongoDB',
-  description: 'A passionate full-stack developer with experience in building web applications using JavaScript, React, and Node.js. Always eager to learn new technologies and improve coding skills.',
+  description: 'JavaScript, React, Node.js, Express, MongoDB',
 
   nfts: [
     // NFTs de Oro
