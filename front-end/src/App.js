@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PostsPage from "./components/PostPage";
+import PostsPage from "./components/Posts/PostPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { Login } from "./components/Login/Login";

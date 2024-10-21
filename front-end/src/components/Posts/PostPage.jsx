@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { CustomTable } from "./CustomTable/CustomTable";
+import { CustomTable } from "../CustomTable/CustomTable";
 import { TextField, Typography, Button, Box, Stack } from "@mui/material";
-import { BlueContainer } from "./Dashboard/Dashboard";
-import { postsList } from "../constants";
-import { JobDescriptionModal } from "./Modals/JobDescriptionModal";
-import { ApplicantsModal } from "./Modals/ApplicantsModal";
+import { BlueContainer } from "../Dashboard/Dashboard";
+import { postsList } from "../../constants";
+import { JobDescriptionModal } from "../Modals/JobDescriptionModal";
+import { ApplicantsModal } from "../Modals/ApplicantsModal";
 
 const columns = [
   { label: "Title", key: "title" },
