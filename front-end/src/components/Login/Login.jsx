@@ -1,4 +1,11 @@
-import { useMediaQuery, Stack, Typography, Input, Button } from "@mui/material";
+import {
+  useMediaQuery,
+  Stack,
+  Typography,
+  Input,
+  Button,
+  Box,
+} from "@mui/material";
 import { BlueContainer } from "../Dashboard/Dashboard";
 
 export const Login = () => {
@@ -27,24 +34,24 @@ export const Login = () => {
           height="100%"
         >
           <Typography
-            variant="h5"
+            variant="h6"
             fontWeight="bold"
             textAlign="center"
             sx={{ color: "black" }}
           >
             Login
           </Typography>
-          <Typography variant="h6" mt={4} sx={{ color: "black" }}>
+          <Typography variant="body1" mt={4} sx={{ color: "black" }}>
             Email
           </Typography>
           <Input type="email" />
-          <Typography variant="h6" mt={2} sx={{ color: "black" }}>
+          <Typography variant="body1" mt={2} sx={{ color: "black" }}>
             Password
           </Typography>
           <Input type="password" />
-          <Button variant="contained" sx={{ mt: 5 }}>
-            Login
-          </Button>
+          <Box display="flex" justifyContent="center" mt={2}>
+            <Button variant="contained">Login</Button>
+          </Box>
           <Typography
             variant="body2"
             mt={3}
