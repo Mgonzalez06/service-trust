@@ -14,10 +14,16 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { BlueContainer } from "../Dashboard/Dashboard";
+import { registerUser } from "../../utils/userRegistryfunctions";
 
 export const SignUp = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
-  const [countries, setCountries] = useState([]);
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [cities, setCities] = useState([]);
@@ -44,7 +50,7 @@ export const SignUp = () => {
         const response = await axios.get(`https://restcountries.com/v3.1/all`);
         const countryNationalityList = response.data.map((country) => ({
           country: country.name.common,
-          nationality: country.demonyms?.eng?.m || "Not available", // Verifica si la nacionalidad existe
+          nationality: country.demonyms?.eng?.m || "Not available",
         }));
         countryNationalityList.sort((a, b) =>
           a.nationality.localeCompare(b.nationality)
@@ -83,6 +89,21 @@ export const SignUp = () => {
     setSkills(typeof value === "string" ? value.split(",") : value);
   };
 
+  const handleSignUp = async () => {
+    await registerUser(
+      name,
+      lastName,
+      password,
+      country,
+      city,
+      nationality,
+      birthdate,
+      email,
+      phone,
+      skills
+    );
+  };
+
   return (
     <Stack
       display="flex"
@@ -118,19 +139,34 @@ export const SignUp = () => {
               <Typography variant="body1" sx={{ color: "black" }}>
                 First Name
               </Typography>
-              <Input fullWidth type="text" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="body1" sx={{ color: "black" }}>
                 Last Name
               </Typography>
-              <Input fullWidth type="text" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="text"
+                onChange={(e) => setLastName(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="body1" sx={{ color: "black" }}>
                 Email
               </Typography>
-              <Input fullWidth type="email" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="body1" sx={{ color: "black" }}>
@@ -187,13 +223,23 @@ export const SignUp = () => {
               <Typography variant="body1" sx={{ color: "black" }}>
                 Birthdate
               </Typography>
-              <Input fullWidth type="date" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="date"
+                onChange={(e) => setBirthdate(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="body1" sx={{ color: "black" }}>
                 Phone
               </Typography>
-              <Input fullWidth type="tel" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="tel"
+                onChange={(e) => setPhone(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="body1" sx={{ color: "black" }}>
@@ -219,7 +265,12 @@ export const SignUp = () => {
               <Typography variant="body1" sx={{ color: "black" }}>
                 Password
               </Typography>
-              <Input fullWidth type="password" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant="body1" sx={{ color: "black" }}>
@@ -229,7 +280,7 @@ export const SignUp = () => {
             </Grid>
           </Grid>
           <Box display="flex" justifyContent="center">
-            <Button variant="contained" sx={{ mt: 2 }}>
+            <Button variant="contained" sx={{ mt: 2 }} onClick={handleSignUp}>
               Sign Up
             </Button>
           </Box>

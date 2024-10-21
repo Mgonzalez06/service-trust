@@ -1,37 +1,24 @@
-import React from 'react';
-import { Avatar, Typography, Container, Box, Paper, Card, CardMedia, CardContent, Grid, Divider } from '@mui/material';
-
+import React from "react";
+import {
+  Avatar,
+  Typography,
+  Container,
+  Box,
+  Paper,
+  Card,
+  CardMedia,
+  CardContent,
+  Grid,
+  Divider,
+} from "@mui/material";
+import { categorizeNFTs, nftsStub } from "../../constants";
 const profileStub = {
-  name: 'John Doe',
-  avatar: 'https://imgs.search.brave.com/b5PdydEZTaC3RqF33bkMLiwhHVLC5O2WCDbnmgeqQCw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy81/LzVhL0pvaG5fRG9l/LF9ib3JuX0pvaG5f/Tm9tbWVuc2VuX0R1/Y2hhYy5qcGc',
-  description: 'JavaScript, React, Node.js, Express, MongoDB',
+  name: "John Doe",
+  avatar:
+    "https://imgs.search.brave.com/b5PdydEZTaC3RqF33bkMLiwhHVLC5O2WCDbnmgeqQCw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy81/LzVhL0pvaG5fRG9l/LF9ib3JuX0pvaG5f/Tm9tbWVuc2VuX0R1/Y2hhYy5qcGc",
+  description: "Basic medical care, Medication administration",
 
-  nfts: [
-    // NFTs de Oro
-    { id: 1, name: 'Golden Sword', type: 'Oro', image: 'https://png.pngtree.com/png-vector/20240419/ourmid/pngtree-golden-sword-logo-png-image_12298155.png' },
-    { id: 2, name: 'Golden Crown', type: 'Oro', image: 'https://st2.depositphotos.com/1007566/11843/v/950/depositphotos_118435034-stock-illustration-crown-gold-golden-icon.jpg' },
-    // NFTs de Plata
-    { id: 3, name: 'Silver Shield', type: 'Plata', image: 'https://t3.ftcdn.net/jpg/09/06/49/88/360_F_906498816_Qc9RgCLMkMapM5chX7T3Filsxpw4b83P.jpg' },
-    // NFTs de Bronce
-    { id: 4, name: 'Bronze Helmet', type: 'Bronce', image: 'https://wiki.melvoridle.com/images/e/e2/Bronze_Helmet_%28item%29.png' },
-    { id: 5, name: 'Bronze Sword', type: 'Bronce', image: 'https://steamusercontent-a.akamaihd.net/ugc/779532750883148042/989EE9B780B1D0D35D65D9FC262790EE73E16A9B/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true' },
-    { id: 6, name: 'Bronze Armor', type: 'Bronce', image: 'https://pics.craiyon.com/2023-11-25/Co6iyfXnTD-BCGORRFzoRg.webp' },
-  ],
-};
-
-
-const categorizeNFTs = (nfts) => {
-  const categories = {
-    Oro: [],
-    Plata: [],
-    Bronce: [],
-  };
-  
-  nfts.forEach((nft) => {
-    categories[nft.type].push(nft);
-  });
-  
-  return categories;
+  nfts: nftsStub,
 };
 
 export const ProfilePage = () => {
@@ -39,7 +26,7 @@ export const ProfilePage = () => {
 
   return (
     <Container maxWidth="md">
-      <Paper elevation={3} style={{ padding: '20px', marginTop: '30px' }}>
+      <Paper elevation={3} style={{ padding: "20px", marginTop: "30px" }}>
         <Box display="flex" justifyContent="center" mb={2}>
           <Avatar
             alt={profileStub.name}
@@ -63,7 +50,11 @@ export const ProfilePage = () => {
           {profileStub.skills}
         </Typography>
 
-        <Typography variant="h5" align="center" style={{ marginTop: '30px', marginBottom: '20px' }}>
+        <Typography
+          variant="h5"
+          align="center"
+          style={{ marginTop: "30px", marginBottom: "20px" }}
+        >
           NFT Collection
         </Typography>
 
@@ -90,7 +81,7 @@ export const ProfilePage = () => {
                 </Grid>
               ))}
             </Grid>
-            <Divider style={{ marginTop: '20px', marginBottom: '20px' }} />
+            <Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
           </>
         )}
 
@@ -117,7 +108,7 @@ export const ProfilePage = () => {
                 </Grid>
               ))}
             </Grid>
-            <Divider style={{ marginTop: '20px', marginBottom: '20px' }} />
+            <Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
           </>
         )}
 
@@ -150,4 +141,3 @@ export const ProfilePage = () => {
     </Container>
   );
 };
-

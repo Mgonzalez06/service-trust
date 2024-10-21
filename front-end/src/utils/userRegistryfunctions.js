@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
-import userRegistryABI from "../../../artifacts/contracts/UserRegistrty.sol/UserRegistrty.json";
-const userRegistryAddress = "0x32E7E9678407aA2430796E93a1A27D7D251FEE62"; // Replace with your deployed contract address
-
+// import userRegistryABI from "../../../artifacts/contracts/UserRegistrty.sol/UserRegistrty.json";
+// const userRegistryAddress = "0x32E7E9678407aA2430796E93a1A27D7D251FEE62";
+import { createNewWallet } from "./connectWallet";
 export const registerUser = async (
   name,
   lastName,
@@ -12,21 +12,17 @@ export const registerUser = async (
   birthdate,
   email,
   phone,
-  skills,
-  walletAddress
+  skills
 ) => {
   try {
-    if (!connected) {
-      console.error("Wallet not connected.");
-      return;
-    }
+    const newWallet = await createNewWallet();
 
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
 
     const contract = new ethers.Contract(
-      userRegistryAddress,
-      userRegistryABI.abi,
+      // userRegistryAddress,
+      // userRegistryABI.abi,
       signer
     );
 
@@ -41,7 +37,7 @@ export const registerUser = async (
       email,
       phone,
       skills,
-      walletAddress
+      newWallet.address
     );
     await transaction.wait();
     console.log("Transaction hash:", transaction.hash);
@@ -66,17 +62,12 @@ export const updateUserProfile = async (
   walletAddress
 ) => {
   try {
-    if (!connected) {
-      console.error("Wallet not connected.");
-      return;
-    }
-
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
 
     const contract = new ethers.Contract(
-      userRegistryAddress,
-      userRegistryABI.abi,
+      // userRegistryAddress,
+      // userRegistryABI.abi,
       signer
     );
 
@@ -107,8 +98,8 @@ export const getUserProfile = async (walletAddress) => {
   try {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const contract = new ethers.Contract(
-      userRegistryAddress,
-      userRegistryABI.abi,
+      // userRegistryAddress,
+      // userRegistryABI.abi,
       provider
     );
 
@@ -123,8 +114,8 @@ export const getAllUsers = async () => {
   try {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const contract = new ethers.Contract(
-      userRegistryAddress,
-      userRegistryABI.abi,
+      // userRegistryAddress,
+      // userRegistryABI.abi,
       provider
     );
 
@@ -139,8 +130,8 @@ export const loginUser = async (email, password) => {
   try {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const contract = new ethers.Contract(
-      userRegistryAddress,
-      userRegistryABI.abi,
+      // userRegistryAddress,
+      // userRegistryABI.abi,
       provider
     );
 
