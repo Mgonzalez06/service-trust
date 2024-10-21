@@ -3,23 +3,19 @@ import { CustomTable } from "./CustomTable/CustomTable";
 import { TextField, Typography, Button, Box, Stack } from "@mui/material";
 import { BlueContainer } from "./Dashboard/Dashboard";
 import { postsList } from "../constants";
-import { JobDescriptionModal } from "./Modals/JobDescriptionModal";
-import { ApplicantsModal } from "./Modals/ApplicantsModal";
 
 const columns = [
   { label: "Title", key: "title" },
   { label: "Date Posted", key: "date" },
   { label: "Status", key: "status" },
+  { label: "Salary", key: "salary" },
+  { label: "Description", key: "description" },
   { label: "", key: "action" },
 ];
 
 const PostsPage = () => {
-  const user = "0x0969F4786c8FDC835e5Ba9cF6a734Cc9C005992f";
   const [filter, setFilter] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(postsList);
-  const [JobDescriptionModalOpen, setJobDescriptionModalOpen] = useState(false);
-  const [applicantsModalOpen, setApplicantsModalOpen] = useState(false);
-  const [selectedJob, setSelectedJob] = useState(null);
 
   const handleFilterChange = (e) => {
     const searchValue = e.target.value.toLowerCase();
@@ -30,13 +26,8 @@ const PostsPage = () => {
     setFilteredPosts(filtered);
   };
 
-  const handleApply = (post) => {
-    setSelectedJob(post);
-    if (post.owner === user) {
-      setApplicantsModalOpen(true);
-    } else {
-      setJobDescriptionModalOpen(true);
-    }
+  const handleApply = (postId) => {
+    alert(`Applied to job ID: ${postId}`);
   };
 
   const postsWithHandlers = filteredPosts.map((post) => ({
@@ -45,10 +36,10 @@ const PostsPage = () => {
       <Button
         variant="contained"
         color="secondary"
-        onClick={() => handleApply(post)}
+        onClick={() => handleApply(post.id)}
         disabled={post.status === "Closed"}
       >
-        See
+        Apply
       </Button>
     ),
   }));
@@ -74,16 +65,6 @@ const PostsPage = () => {
         />
         <CustomTable columns={columns} data={postsWithHandlers} />
       </Box>
-      <JobDescriptionModal
-        open={JobDescriptionModalOpen}
-        handleClose={() => setJobDescriptionModalOpen(false)}
-        job={selectedJob}
-      />
-      <ApplicantsModal
-        open={applicantsModalOpen}
-        handleClose={() => setApplicantsModalOpen(false)}
-        applicants={selectedJob?.applicants}
-      />
     </Stack>
   );
 };
