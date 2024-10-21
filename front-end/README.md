@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# 🚀 Job Posting App - React + Material UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web donde los empleadores pueden crear publicaciones de trabajo y los empleados pueden visualizar y aplicar a las ofertas disponibles. La aplicación está construida con **React** y estilizada con **Material UI**, proporcionando una interfaz amigable y moderna.
 
-## Available Scripts
+## 🌟 Características principales
 
-In the project directory, you can run:
+- 📝 Creación de publicaciones de trabajo con título, descripción, rango salarial y fecha límite para aplicar.
+- 🔍 Visualización y filtro de publicaciones de trabajo.
+- 🛠️ Interfaz sencilla y responsiva usando **Material UI**.
+- 🎨 NFTs para el rating de los trabajos de calidad realizados.
+  
+---
 
-### `npm start`
+## 🛠️ Instalación y configuración
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Sigue estos pasos para instalar y ejecutar el proyecto localmente.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Clona el repositorio
 
-### `npm test`
+```bash
+git clone https://github.com/Mgonzalez06/service-trust.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Navega al directorio del proyecto
 
-### `npm run build`
+```bash
+cd service-trust
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. Instala las dependencias
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 4. Inicia la aplicación
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🌿 Estructura del proyecto
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+El proyecto sigue la siguiente estructura de carpetas:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+``` bash
+front-end/
+├── public/                          # Archivos públicos
+├── src/                             # Código fuente del proyecto
+│   ├── components/                  # Componentes de React
+│   │   ├── Applicants/              # Módulo para gestionar los solicitantes
+│   │   │   └── Applicants.jsx       # Listado de los solicitantes
+│   │   ├── ConnectWallet/           # Módulo para conectar la wallet
+│   │   │   └── ConnectWallet.jsx    # Conectar la wallet del usuario
+│   │   ├── CustomTable/             # Tablas personalizadas
+│   │   │   └── CustomTable.jsx      # Componente de tablas personalizadas
+│   │   ├── Dashboard/               # Módulo para el Dashboard
+│   │   │   ├── Dashboard.jsx        # Pantalla principal del dashboard
+│   │   │   ├── Header.jsx           # Encabezado del dashboard
+│   │   │   └── Information.jsx      # Información adicional del dashboard
+│   │   ├── Login/                   # Módulo de inicio de sesión
+│   │   │   └── Login.jsx            # Pantalla de inicio de sesión
+│   │   ├── Modals/                  # Modales de la aplicación
+│   │   │   ├── ApplicantsModal.jsx  # Modal de solicitantes
+│   │   │   ├── CustomModal.jsx      # Modal personalizado
+│   │   │   ├── JobDescriptionModal.jsx  # Modal para la descripción del trabajo
+│   │   │   └── ProfileModal.jsx     # Modal para ver el perfil
+│   │   ├── Posts/                   # Módulo de publicaciones de trabajo
+│   │   │   ├── CreatePost.jsx       # Formulario para crear publicaciones de trabajo
+│   │   │   └── PostPage.jsx         # Página para ver publicaciones de trabajo
+│   │   ├── Profile/                 # Módulo del perfil
+│   │   │   └── ProfilePage.jsx      # Pantalla del perfil del usuario
+│   │   ├── SignUp/                  # Módulo de registro
+│   │   │   └── SignUp.jsx           # Pantalla para registro de usuarios
+│   ├── utils/                       # Utilidades y funciones
+│   │   ├── connectWallet.js         # Funciones para conectar wallet
+│   │   ├── jobListingFunctions.js   # Funciones relacionadas con las publicaciones
+│   │   └── userRegistryFunctions.js # Funciones para el registro de usuarios
+│   ├── App.css                      # Estilos principales
+│   ├── App.js                       # Componente principal de la aplicación
+│   ├── App.test.js                  # Tests de la aplicación
+│   ├── constants.js                 # Constantes usadas en la aplicación
+│   ├── index.css                    # Estilos globales
+│   ├── index.js                     # Punto de entrada de la aplicación
+│   └── reportWebVitals.js           # Herramienta para medir el rendimiento
+└── README.md                        # Documentación del proyecto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
 
-## Learn More
+## 📦 Dependencias principales
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React: Una biblioteca de JavaScript para construir interfaces de usuario.
+- Material UI: Un framework de componentes de UI que sigue las directrices de Material Design.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## 🚀 Scripts disponibles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+En el proyecto puedes ejecutar los siguientes comandos:
 
-### Analyzing the Bundle Size
+- npm start: Inicia el servidor de desarrollo.
+- npm run build: Crea una versión optimizada para producción en la carpeta build.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 🔧 Herramientas de desarrollo recomendadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- VSCode: Editor de código.
+- React Developer Tools: Extensión para Chrome/Firefox para depurar aplicaciones React.
 
-### Advanced Configuration
+## 🤝 Contribuciones
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Las contribuciones son bienvenidas. Si encuentras algún error o tienes ideas para nuevas funcionalidades, ¡no dudes en abrir un issue o enviar un pull request!
 
-### Deployment
+## 📝 Licencia
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](https://opensource.org/license/mit) para más detalles.

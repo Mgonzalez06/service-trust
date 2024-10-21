@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PostsPage from "./components/PostPage";
+import { PostsPage } from "./components/Posts/PostPage";
+import { JobPostForm } from "./components/Posts/CreatePost";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { Login } from "./components/Login/Login";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/create_post" element={<JobPostForm />} />
         </Routes>
       </Router>
     </ThemeProvider>
