@@ -54,7 +54,7 @@ In today's fragmented and disconnected caregiver market, trust deficits hinder h
 
 |                       ![Name 4](./images/image4.jpg)                       |                                          ![Name 5](./images/Luisdi98.png)                                          |                                      ![Name 6](./images/image6.jpg)                                       |
 | :------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
-| **Lindsay** <br> Graphic Designer & audiovisual producer <br> [badillalindsay85@gmail.com](mailto:badillalindsay85@gmail.com) | **Luis Diego Mora Aguilar** <br> Frontend developer <br> [aguilarluisdi@gmail.com](mailto:aguilarluisdi@gmail.com) | **Roberto Solano** <br> Blockchain Developer <br> [robertosolano@duck.com](mailto:robertosolano@duck.com) |
+| **Lindsay Badilla Rodriguez** <br> Graphic Designer & audiovisual producer <br> [badillalindsay85@gmail.com](mailto:badillalindsay85@gmail.com) | **Luis Diego Mora Aguilar** <br> Frontend developer <br> [aguilarluisdi@gmail.com](mailto:aguilarluisdi@gmail.com) | **Roberto Solano** <br> Blockchain Developer <br> [robertosolano@duck.com](mailto:robertosolano@duck.com) |
 
 ## Project Structure
 
