@@ -34,11 +34,10 @@ const HomeImage = styled("img")(() => ({
 
 const SignUpButton = styled(Button)(() => ({
   position: "absolute",
-  top: "28px",
+  top: "8px",
   right: "10px",
   color: "white",
   cursor: "pointer",
-  textDecoration: "underline",
   "&:hover": {
     backgroundColor: "transparent",
     textDecoration: "underline",

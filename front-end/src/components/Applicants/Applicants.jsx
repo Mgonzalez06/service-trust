@@ -32,7 +32,7 @@ export const Applicants = () => {
           onClick={() => handleViewProfile(applicant)}
           sx={{ mr: 1 }}
         >
-          Check Profile
+          Ver Profile
         </Button>
         <Button
           variant="contained"
