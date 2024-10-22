@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   useMediaQuery,
   Stack,
@@ -79,14 +80,6 @@ export const Login = () => {
           </Typography>
           <Button
             variant="text"
-            sx={{
-              color: "blue",
-              mt: 1,
-              "&:hover": {
-                textDecoration: "underline",
-                backgroundColor: "transparent",
-              },
-            }}
             onClick={() => (window.location.href = "/sign-up")}
           >
             Sign Up

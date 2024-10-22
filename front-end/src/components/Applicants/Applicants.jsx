@@ -25,16 +25,16 @@ export const Applicants = () => {
   const applicantsWithHandlers = applicantsList.map((applicant) => ({
     ...applicant,
     action: (
-      <Box>
+      <Box display="flex" justifyContent="flex-end">
         <Button
-          variant="contained"
+          variant="outlined"
           onClick={() => handleViewProfile(applicant)}
           sx={{ mr: 1 }}
         >
-          Ver Profile
+          See Profile
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => handleAcceptApplication(applicant)}
         >

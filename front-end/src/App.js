@@ -7,7 +7,6 @@ import { Login } from "./components/Login/Login";
 import { SignUp } from "./components/SignUp/SignUp";
 import { ProfilePage } from "./components/Profile/ProfilePage";
 
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -15,6 +14,34 @@ const theme = createTheme({
     },
     secondary: {
       main: "#000000",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+        },
+        contained: {
+          boxShadow: "none",
+          backgroundColor: "#00244a",
+          "&:active": {
+            boxShadow: "none",
+          },
+        },
+        outlined: {
+          borderColor: "#00244a",
+          color: "#00244a",
+        },
+        text: {
+          color: "blue",
+          mt: 1,
+          "&:hover": {
+            textDecoration: "underline",
+            backgroundColor: "transparent",
+          },
+        },
+      },
     },
   },
 });

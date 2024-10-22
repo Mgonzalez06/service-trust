@@ -45,10 +45,9 @@ export const PostsPage = () => {
     ...post,
     action: (
       <Button
-        variant="contained"
+        variant="outlined"
         color="secondary"
         onClick={() => handleApply(post)}
-        disabled={post.status === "Closed"}
       >
         See
       </Button>
@@ -64,7 +63,7 @@ export const PostsPage = () => {
     >
       <BlueContainer />
       <Box style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        <Typography variant="h5" fontWeight="bold" textAlign="center" mt={2}>
+        <Typography variant="h6" fontWeight="bold" textAlign="center" mt={2}>
           Available Jobs
         </Typography>
         <TextField

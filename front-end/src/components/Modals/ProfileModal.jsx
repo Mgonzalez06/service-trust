@@ -29,56 +29,56 @@ export const ProfileModal = ({ open, handleClose, applicant }) => {
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Name
             </Typography>
-            <Typography variant="body1">{applicant?.name}</Typography>
+            <Typography variant="body2">{applicant?.name}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Email
             </Typography>
-            <Typography variant="body1">{applicant?.email}</Typography>
+            <Typography variant="body2">{applicant?.email}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Skills
             </Typography>
-            <Typography variant="body1">{applicant?.skills}</Typography>
+            <Typography variant="body2">{applicant?.skills}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Birthdate
             </Typography>
-            <Typography variant="body1">{applicant?.birthdate}</Typography>
+            <Typography variant="body2">{applicant?.birthdate}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Phone
             </Typography>
-            <Typography variant="body1">{applicant?.phone}</Typography>
+            <Typography variant="body2">{applicant?.phone}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Country
             </Typography>
-            <Typography variant="body1">{applicant?.country}</Typography>
+            <Typography variant="body2">{applicant?.country}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               City
             </Typography>
-            <Typography variant="body1">{applicant?.city}</Typography>
+            <Typography variant="body2">{applicant?.city}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
               Nationality
             </Typography>
-            <Typography variant="body1">{applicant?.nationality}</Typography>
+            <Typography variant="body2">{applicant?.nationality}</Typography>
           </Grid>
         </Grid>
 

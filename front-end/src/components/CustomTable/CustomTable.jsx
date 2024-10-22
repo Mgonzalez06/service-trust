@@ -17,7 +17,7 @@ export const CustomTable = ({ columns, data }) => {
           <TableRow>
             {columns.map((column, index) => (
               <TableCell key={index}>
-                <Typography color="primary" fontWeight="bold">
+                <Typography color="primary" fontWeight="bold" variant="body1">
                   {column.label}
                 </Typography>
               </TableCell>
@@ -33,7 +33,7 @@ export const CustomTable = ({ columns, data }) => {
                   {column.key === "action" ? (
                     row[column.key]
                   ) : (
-                    <Typography variant="body1" color="primary">
+                    <Typography variant="body2" color="primary">
                       {row[column.key]}
                     </Typography>
                   )}
