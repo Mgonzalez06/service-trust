@@ -12,24 +12,32 @@ import {
   Checkbox,
   ListItemText,
 } from "@mui/material";
-import axios from "axios";
 import { BlueContainer } from "../Dashboard/Dashboard";
 import { registerUser } from "../../utils/userRegistryfunctions";
+import useCountriesNow from "../../Hooks/useCountriesNow";
 
 export const SignUp = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [cities, setCities] = useState([]);
   const [nationality, setNationality] = useState("");
-  const [nationalities, setNationalities] = useState([]);
   const [skills, setSkills] = useState([]);
+
+  const {
+    countries,
+    cities,
+    fetchCitiesByCountry,
+    loadingCountries,
+    loadingCities,
+  } = useCountriesNow();
 
   const availableSkills = [
     "Basic medical care",
@@ -45,40 +53,6 @@ export const SignUp = () => {
   ];
 
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await axios.get(`https://restcountries.com/v3.1/all`);
-        const countryNationalityList = response.data.map((country) => ({
-          country: country.name.common,
-          nationality: country.demonyms?.eng?.m || "Not available",
-        }));
-        countryNationalityList.sort((a, b) =>
-          a.nationality.localeCompare(b.nationality)
-        );
-
-        setNationalities(countryNationalityList);
-      } catch (error) {
-        console.error("Error fetching countries and nationalities", error);
-      }
-    };
-    fetchCountries();
-  }, []);
-
-  const fetchCitiesByCountry = async (countryName) => {
-    try {
-      const response = await axios.post(
-        `https://countriesnow.space/api/v0.1/countries/cities`,
-        {
-          country: countryName,
-        }
-      );
-      setCities(response.data.data);
-    } catch (error) {
-      console.error("Error fetching cities", error);
-    }
-  };
-
-  useEffect(() => {
     if (country) {
       fetchCitiesByCountry(country);
     }
@@ -90,6 +64,12 @@ export const SignUp = () => {
   };
 
   const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+    setPasswordError("");
+
     await registerUser(
       name,
       lastName,
@@ -178,11 +158,18 @@ export const SignUp = () => {
                 fullWidth
                 sx={{ height: 40 }}
               >
-                {nationalities.map((n) => (
-                  <MenuItem key={n.country} value={n.country}>
-                    {n.country}
-                  </MenuItem>
-                ))}
+                {loadingCountries ? (
+                  <MenuItem disabled>Loading countries...</MenuItem>
+                ) : (
+                  countries.map((countryItem) => (
+                    <MenuItem
+                      key={countryItem.country}
+                      value={countryItem.country}
+                    >
+                      {countryItem.country}
+                    </MenuItem>
+                  ))
+                )}
               </Select>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -195,11 +182,15 @@ export const SignUp = () => {
                 fullWidth
                 sx={{ height: 40 }}
               >
-                {cities.map((cityName) => (
-                  <MenuItem key={cityName} value={cityName}>
-                    {cityName}
-                  </MenuItem>
-                ))}
+                {loadingCities ? (
+                  <MenuItem disabled>Loading cities...</MenuItem>
+                ) : (
+                  cities.map((cityName) => (
+                    <MenuItem key={cityName} value={cityName}>
+                      {cityName}
+                    </MenuItem>
+                  ))
+                )}
               </Select>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -212,7 +203,7 @@ export const SignUp = () => {
                 fullWidth
                 sx={{ height: 40 }}
               >
-                {nationalities.map((n) => (
+                {countries.map((n) => (
                   <MenuItem key={n.nationality} value={n.nationality}>
                     {n.nationality}
                   </MenuItem>
@@ -276,11 +267,31 @@ export const SignUp = () => {
               <Typography variant="body1" sx={{ color: "black" }}>
                 Confirm Password
               </Typography>
-              <Input fullWidth type="password" sx={{ height: 40 }} />
+              <Input
+                fullWidth
+                type="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                sx={{ height: 40 }}
+              />
             </Grid>
           </Grid>
-          <Box display="flex" justifyContent="center">
-            <Button variant="contained" sx={{ mt: 2 }} onClick={handleSignUp}>
+
+          <Box
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            alignItems="center"
+          >
+            {passwordError && (
+              <Typography color="error" variant="body2" textAlign="center">
+                {passwordError}
+              </Typography>
+            )}
+            <Button
+              variant="contained"
+              sx={{ mt: 2, width: "fit-content" }}
+              onClick={handleSignUp}
+            >
               Sign Up
             </Button>
           </Box>
