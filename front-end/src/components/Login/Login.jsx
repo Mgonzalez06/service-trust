@@ -11,9 +11,12 @@ import { loginUser } from "../../utils/userRegistryfunctions";
 
 export const Login = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const handleLogin = () => {
-  // };
+  const handleLogin = async () => {
+    await loginUser(email, password);
+  };
 
   return (
     <Stack
@@ -48,13 +51,23 @@ export const Login = () => {
           <Typography variant="body1" mt={4} sx={{ color: "black" }}>
             Email
           </Typography>
-          <Input type="email" />
+          <Input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            sx={{ height: 40 }}
+          />
           <Typography variant="body1" mt={2} sx={{ color: "black" }}>
             Password
           </Typography>
-          <Input type="password" />
+          <Input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            sx={{ height: 40 }}
+          />
           <Box display="flex" justifyContent="center" mt={2}>
-            <Button variant="contained">Login</Button>
+            <Button variant="contained" onClick={handleLogin}>
+              Login
+            </Button>
           </Box>
           <Typography
             variant="body2"
