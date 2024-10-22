@@ -1,13 +1,12 @@
 import { Box, styled, Button } from "@mui/material";
-import logo from "../../Images/logo.png";
+import logo from "../../Images/logo.jpeg";
 import home from "../../Images/home.png";
 import { Header } from "./Header";
 import { Information } from "./Information";
-import { JobDescriptionModal } from "../Modals/JobDescriptionModal";
 
 export const BlueContainer = styled(Box)(() => ({
   backgroundColor: "#00244a",
-  height: "150px",
+  height: "105px",
   textAlign: "center",
   position: "relative",
   width: "100%",
@@ -22,8 +21,8 @@ const HeaderContainer = styled(Box)(() => ({
 }));
 
 const LogoImage = styled("img")(() => ({
-  width: "170px",
-  height: "150px",
+  width: "105px",
+  height: "105px",
 }));
 
 const HomeImage = styled("img")(() => ({
@@ -49,7 +48,6 @@ export const Dashboard = () => {
   return (
     <Box height="100vh">
       <BlueContainer>
-
         <HeaderContainer alignItems="center">
           <LogoImage src={logo} alt="Logo Service Trust" />
           <Header />

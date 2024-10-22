@@ -7,9 +7,13 @@ import {
   Box,
 } from "@mui/material";
 import { BlueContainer } from "../Dashboard/Dashboard";
+import { loginUser } from "../../utils/userRegistryfunctions";
 
 export const Login = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
+
+  // const handleLogin = () => {
+  // };
 
   return (
     <Stack
