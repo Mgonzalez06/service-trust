@@ -80,6 +80,7 @@ export const Login = () => {
           </Typography>
           <Button
             variant="text"
+            width="fit-content"
             onClick={() => (window.location.href = "/sign-up")}
           >
             Sign Up

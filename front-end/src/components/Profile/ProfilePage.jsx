@@ -35,23 +35,16 @@ export const ProfilePage = () => {
           />
         </Box>
 
-        <Typography variant="h4" align="center" gutterBottom>
+        <Typography variant="h5" align="center" gutterBottom fontWeight="bold">
           {profileStub.name}
         </Typography>
 
         <Typography variant="body1" align="center" paragraph>
           {profileStub.description}
         </Typography>
-
-        <Typography variant="h6" align="center" gutterBottom>
-          Skills
-        </Typography>
-        <Typography variant="body2" align="center">
-          {profileStub.skills}
-        </Typography>
-
         <Typography
-          variant="h5"
+          variant="body1"
+          fontWeight="bold"
           align="center"
           style={{ marginTop: "30px", marginBottom: "20px" }}
         >
@@ -61,7 +54,7 @@ export const ProfilePage = () => {
         {/* NFTs de Oro */}
         {categorizedNFTs.Oro.length > 0 && (
           <>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="body1" gutterBottom fontWeight="bold">
               Oro
             </Typography>
             <Grid container spacing={2}>
@@ -75,7 +68,9 @@ export const ProfilePage = () => {
                       alt={nft.name}
                     />
                     <CardContent>
-                      <Typography variant="h6">{nft.name}</Typography>
+                      <Typography variant="body2" textAlign="center">
+                        {nft.name}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -88,7 +83,7 @@ export const ProfilePage = () => {
         {/* NFTs de Plata */}
         {categorizedNFTs.Plata.length > 0 && (
           <>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="body1" gutterBottom fontWeight="bold">
               Plata
             </Typography>
             <Grid container spacing={2}>
@@ -102,7 +97,9 @@ export const ProfilePage = () => {
                       alt={nft.name}
                     />
                     <CardContent>
-                      <Typography variant="h6">{nft.name}</Typography>
+                      <Typography variant="body2" textAlign="center">
+                        {nft.name}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -115,7 +112,7 @@ export const ProfilePage = () => {
         {/* NFTs de Bronce */}
         {categorizedNFTs.Bronce.length > 0 && (
           <>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="body1" gutterBottom fontWeight="bold">
               Bronce
             </Typography>
             <Grid container spacing={2}>
@@ -129,7 +126,9 @@ export const ProfilePage = () => {
                       alt={nft.name}
                     />
                     <CardContent>
-                      <Typography variant="h6">{nft.name}</Typography>
+                      <Typography variant="body2" textAlign="center">
+                        {nft.name}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
