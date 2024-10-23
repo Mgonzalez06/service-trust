@@ -6,14 +6,18 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./UserRegistry.sol";
 import "./JobListing.sol";
+import "./ReputationNFT.sol";
 
 contract HiringContract is Ownable, ReentrancyGuard {
     // Reference to UserRegistry contract
     UserRegistry public userRegistry;
     // Reference to JobListing contract
     JobListing public jobListing;
+    //Reference to ReputationNFT
+    ReputationNFT public reputationNFT;
+
     // Payment token contract
-    IERC20 public paymentToken;
+    //IERC20 public paymentToken;
 
     // Enum to represent contract statuses
     enum ContractStatus { Created, Started, Completed, Disputed, Cancelled }
@@ -43,12 +47,13 @@ contract HiringContract is Ownable, ReentrancyGuard {
     event AgreementCompleted(uint256 indexed agreementId, uint256 endDate);
     event AgreementDisputed(uint256 indexed agreementId);
     event AgreementCancelled(uint256 indexed agreementId);
-    event PaymentReleased(uint256 indexed agreementId, uint256 amount);
+    //event PaymentReleased(uint256 indexed agreementId, uint256 amount);
 
-    constructor(address _userRegistryAddress, address _jobListingAddress, address _paymentTokenAddress) Ownable(msg.sender){
+    constructor(address _userRegistryAddress, address _jobListingAddress, address _reputationNFTAddress) Ownable(msg.sender){
         userRegistry = UserRegistry(_userRegistryAddress);
         jobListing = JobListing(_jobListingAddress);
-        paymentToken = IERC20(_paymentTokenAddress);
+        reputationNFT = ReputationNFT(_reputationNFTAddress);
+        //paymentToken = IERC20(_paymentTokenAddress);
     }
 
     // Function to create a new hiring agreement
@@ -103,7 +108,9 @@ contract HiringContract is Ownable, ReentrancyGuard {
     }
 
     // Function to complete the agreement
-    function completeAgreement(uint256 _agreementId) external nonReentrant {
+    function completeAgreement(uint256 _agreementId, uint8 _score) external nonReentrant {
+        // Validate the score
+        require(_score >= 1 && _score <= 3, "Score must be between 1 and 3");
         HiringAgreement storage agreement = agreements[_agreementId];
         require(agreement.employer == msg.sender, "Not the employer");
         require(agreement.status == ContractStatus.Started, "Invalid agreement status");
@@ -112,9 +119,11 @@ contract HiringContract is Ownable, ReentrancyGuard {
         agreement.status = ContractStatus.Completed;
         emit AgreementCompleted(_agreementId, block.timestamp);
 
+        reputationNFT.mint(agreement.caregiver, _score);
+        
         // Release payment to caregiver
-        require(paymentToken.transferFrom(agreement.employer, agreement.caregiver, agreement.salary), "Payment transfer failed");
-        emit PaymentReleased(_agreementId, agreement.salary);
+        //require(paymentToken.transferFrom(agreement.employer, agreement.caregiver, agreement.salary), "Payment transfer failed");
+        //emit PaymentReleased(_agreementId, agreement.salary);
     }
 
     // Function to dispute the agreement

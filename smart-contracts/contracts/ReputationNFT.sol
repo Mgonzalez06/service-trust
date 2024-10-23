@@ -13,9 +13,9 @@ contract ReputationNFT is ERC721URIStorage, Ownable {
 
     constructor() ERC721("ReputationNFT", "RNFT") Ownable( msg.sender) {
         // Set the metadata URIs for scores 1, 2, and 3
-        scoreToTokenURI[1] = "https://ipfs.io/ipfs/QmZ7RmVse6SQST3fwThyCMTMC5Kc4FDmxEaTDWdsCqEGLX"; // Metadata for score 1
-        scoreToTokenURI[2] = "https://ipfs.io/ipfs/QmZudVCZCWqFy28NB5UBgFATaKvJBkY53x57HjUGDCysxZ"; // Metadata for score 2
-        scoreToTokenURI[3] = "https://ipfs.io/ipfs/QmPxMDvvU25MK6mzxRhWpvdTzVV8E6mdaoE3mc6cjZGrAZ"; // Metadata for score 3
+        scoreToTokenURI[1] = "https://ipfs.io/ipfs/QmZ7RmVse6SQST3fwThyCMTMC5Kc4FDmxEaTDWdsCqEGLX"; 
+        scoreToTokenURI[2] = "https://ipfs.io/ipfs/QmZudVCZCWqFy28NB5UBgFATaKvJBkY53x57HjUGDCysxZ";
+        scoreToTokenURI[3] = "https://ipfs.io/ipfs/QmPxMDvvU25MK6mzxRhWpvdTzVV8E6mdaoE3mc6cjZGrAZ";
     }
 
     // Mints a new NFT based on the reliability score
@@ -33,10 +33,29 @@ contract ReputationNFT is ERC721URIStorage, Ownable {
     }
 
     //gets array of tokenIds for an specific address, then you can call it in the front with 
-    function getTokensOfOwner(address _owner) external view returns (uint256[] memory) {
+    function getTokensOfOwner(address _owner) public view returns (uint256[] memory) {
         return ownerToTokenIds[_owner];
     }
+    
+    // Functio to get token URIs for all NFTs owned by a specific address
+    function getTokenURIsOfOwner(address _owner) external view returns (string[] memory) {
+        // Get the array of token IDs owned by the user
+        uint256[] memory tokenIds = getTokensOfOwner(_owner);
+        
+        // Create an array to store the token URIs
+        string[] memory tokenURIs = new string[](tokenIds.length);
 
+        // Loop through the token IDs and retrieve the corresponding URIs
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            tokenURIs[i] = tokenURI(tokenIds[i]); // Use the inherited tokenURI function
+        }
+
+        return tokenURIs; // Return the array of token URIs
+    }
+
+    // function getTokenURI(uint256 _tokenId) external view returns (string memory) {
+    //     return tokenURI(_tokenId);
+    // }
 
     // Assigns reliability score to the NFT
     //function assignReliabilityScore(uint256 _tokenId, uint8 _score) external onlyOwner {
