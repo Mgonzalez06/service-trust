@@ -48,12 +48,12 @@ In today's fragmented and disconnected caregiver market, trust deficits hinder h
 
 ## Team Members
 
-|                       ![Name 1](./images/image1.jpg)                       |                       ![Name 2](./images/image2.jpg)                        |                                            ![Name 3](./images/image3.jpg)                                            |
-| :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
-| **Fabiola** <br> Role 1 <br> [email@example.com](mailto:email@example.com) | **Jonathan Gamboa** <br> Smart Contract Developer <br> [jongamboa17@gmail.com](mailto:jongamboa17@gmail.com) | **Liseth González** <br> Frontend developer <br> [lisethgonzalez2000@gmail.com](mailto:lisethgonzalez2000@gmail.com) |
+| <img src="./images/image2.jpg" alt="Name 2" width="100" height="100"> | <img src="./images/image3.jpg" alt="Name 3" width="100" height="100"> |
+| :--------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+| **Jonathan Gamboa** <br> Smart Contract Developer <br> [jongamboa17@gmail.com](mailto:jongamboa17@gmail.com) | **Liseth González** <br> Frontend developer <br> [lisethgonzalez2000@gmail.com](mailto:lisethgonzalez2000@gmail.com) |
 
-|                       ![Name 4](./images/image4.png)                       |                                          ![Name 5](./images/Luisdi98.png)                                          |                                      ![Name 6](./images/image6.jpg)                                       |
-| :------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| <img src="./images/image4.png" alt="Name 4" width="100" height="100"> | <img src="./images/Luisdi98.png" alt="Name 5" width="100" height="100"> | <img src="./images/image6.jpg" alt="Name 6" width="100" height="100"> |
+| :--------------------------------------------------------------------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------------: |
 | **Lindsay Badilla Rodriguez** <br> Graphic Designer & audiovisual producer <br> [badillalindsay85@gmail.com](mailto:badillalindsay85@gmail.com) | **Luis Diego Mora Aguilar** <br> Frontend developer <br> [aguilarluisdi@gmail.com](mailto:aguilarluisdi@gmail.com) | **Roberto Solano** <br> Blockchain Developer <br> [robertosolano@duck.com](mailto:robertosolano@duck.com) |
 
 ## Project Structure
