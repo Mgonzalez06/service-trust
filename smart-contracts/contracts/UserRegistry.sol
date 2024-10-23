@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Pausable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "./ReputationNFT.sol";
 
-contract UserRegistry is Ownable, Pausable {
-    struct UserProfile {
+contract UserRegistry is Ownable, ReentrancyGuard {
+    ReputationNFT public reputationNFT;
+
+    struct User {
         string name;
         string surname;
         string country;
@@ -13,46 +16,25 @@ contract UserRegistry is Ownable, Pausable {
         string nationality;
         uint256 birthdate;
         string email;
+        bytes32 passwordHash; // Store hashed password
         string phone;
         string description;
-        address walletAddress; ////se genera en el front con ethersjs
+        address walletAddress;
         bool isRegistered;
+        uint256[] nftIds; // Array to store assigned NFT IDs
     }
 
-    mapping(address => UserProfile) public userProfiles;
-    address[] public registeredUsers;  // Array to store addresses of registered users
+    mapping(address => User) public users;
+    mapping(string => address) private emailToAddress;
 
-    event UserProfileCreated(
-        address indexed user, 
-        string name,
-        string surname,
-        string country, 
-        string city, 
-        string nationality, 
-        uint256 birthdate, 
-        string email, 
-        string phone, 
-        string description,
-        address walletAddress
-    );
+    event UserRegistered(address indexed userAddress, string email);
+    event NFTAssigned(address indexed userAddress, uint256 nftId);
 
-    event UserProfileUpdated(
-        address indexed user, 
-        string name,
-        string surname,
-        string country, 
-        string city, 
-        string nationality, 
-        uint256 birthdate, 
-        string email, 
-        string phone, 
-        string description,
-        address walletAddress
-    );
+    constructor(address _reputationNFTAddress) {
+        reputationNFT = ReputationNFT(_reputationNFTAddress);
+    }
 
-    constructor() Ownable(msg.sender) {}
-
-    // Registrar usuario con nuevos campos y wallet
+    // Function to register a new user
     function registerUser(
         string memory _name,
         string memory _surname,
@@ -61,104 +43,77 @@ contract UserRegistry is Ownable, Pausable {
         string memory _nationality,
         uint256 _birthdate,
         string memory _email,
+        bytes32 _passwordHash,
         string memory _phone,
         string memory _description,
-        address _walletAddress  //se genera en el front con ethersjs
-    ) public whenNotPaused {
-        require(!userProfiles[msg.sender].isRegistered, "User already registered");
+        address _walletAddress
+    ) external onlyOwner nonReentrant {
+        require(!users[_walletAddress].isRegistered, "User already registered");
+        require(emailToAddress[_email] == address(0), "Email already in use");
 
-        userProfiles[msg.sender] = UserProfile(
-            _name,
-            _surname,
-            _country,
-            _city,
-            _nationality,
-            _birthdate,
-            _email,
-            _phone,
-            _description,
-            _walletAddress,
-            true
-        );
+        users[_walletAddress] = User({
+            name: _name,
+            surname: _surname,
+            country: _country,
+            city: _city,
+            nationality: _nationality,
+            birthdate: _birthdate,
+            email: _email,
+            passwordHash: _passwordHash,
+            phone: _phone,
+            description: _description,
+            walletAddress: _walletAddress,
+            isRegistered: true,
+            nftIds: new uint256[](0)
+        });
 
-        registeredUsers.push(msg.sender);  // Store the user's address in the array
-        emit UserProfileCreated(msg.sender, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress);
+        emailToAddress[_email] = _walletAddress;
+
+        emit UserRegistered(_walletAddress, _email);
     }
 
-    // Actualizar perfil de usuario
-    function updateUserProfile(
-        string memory _name,
-        string memory _surname,
-        string memory _country,
-        string memory _city,
-        string memory _nationality,
-        uint256 _birthdate,
-        string memory _email,
-        string memory _phone,
-        string memory _description,
-        address _walletAddress  // Permitir actualización de wallet
-    ) public whenNotPaused {
-        require(userProfiles[msg.sender].isRegistered, "User is not registered");
-        userProfiles[msg.sender] = UserProfile(
-            _name,
-            _surname,
-            _country,
-            _city,
-            _nationality,
-            _birthdate,
-            _email,
-            _phone,
-            _description,
-            _walletAddress,
-            true
-        );
-        emit UserProfileUpdated(msg.sender, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress);
+    // Function to assign an NFT to a user
+    function assignNFT(address _userAddress, uint256 _nftId) external onlyOwner {
+        require(users[_userAddress].isRegistered, "User not registered");
+        require(reputationNFT.ownerOf(_nftId) == address(this), "NFT not owned by contract");
+
+        users[_userAddress].nftIds.push(_nftId);
+        reputationNFT.transferFrom(address(this), _userAddress, _nftId);
+
+        emit NFTAssigned(_userAddress, _nftId);
     }
 
-    // Function to get all registered users
-    function getAllUsers() public view returns (address[] memory) {
-        return registeredUsers;
+    // Function to get user's NFT IDs
+    function getUserNFTs(address _userAddress) external view returns (uint256[] memory) {
+        return users[_userAddress].nftIds;
     }
 
-    // Function to get a user profile by address
-    function getUserProfile(address _user) public view returns (
+    // Function to check if a user is registered
+    function isUserRegistered(address _userAddress) external view returns (bool) {
+        return users[_userAddress].isRegistered;
+    }
+
+    // Function to get user details (excluding sensitive information)
+    function getUserDetails(address _userAddress) external view returns (
         string memory name,
         string memory surname,
         string memory country,
         string memory city,
         string memory nationality,
         uint256 birthdate,
-        string memory email,
         string memory phone,
-        string memory description,
-        address walletAddress
+        string memory description
     ) {
-        UserProfile storage profile = userProfiles[_user];
-        require(profile.isRegistered, "User not registered");
-
+        User storage user = users[_userAddress];
         return (
-            profile.name,
-            profile.surname,
-            profile.country,
-            profile.city,
-            profile.nationality,
-            profile.birthdate,
-            profile.email,
-            profile.phone,
-            profile.description,
-            profile.walletAddress
+            user.name,
+            user.surname,
+            user.country,
+            user.city,
+            user.nationality,
+            user.birthdate,
+            user.phone,
+            user.description
         );
     }
-
-    // Pausable functions
-    function pause() public onlyOwner {
-        _pause();  // Pausa el contrato
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();  // Reanuda el contrato
-    }
-
-    // PENDING: store reputation NFTs linked to that contract/wallet
-
 }
