@@ -2,13 +2,10 @@
 pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import "./ReputationNFT.sol";
+import "@openzeppelin/contracts/utils/Pausable.sol";
 
-contract UserRegistry is Ownable, ReentrancyGuard {
-    ReputationNFT public reputationNFT;
-
-    struct User {
+contract UserRegistry is Ownable, Pausable {
+    struct UserProfile {
         string name;
         string surname;
         string country;
@@ -16,25 +13,49 @@ contract UserRegistry is Ownable, ReentrancyGuard {
         string nationality;
         uint256 birthdate;
         string email;
-        bytes32 passwordHash; // Store hashed password
         string phone;
         string description;
-        address walletAddress;
+        address walletAddress; // Se genera en el front con ethersjs
+        bytes32 passwordHash; // Almacena el hash de la contraseña
         bool isRegistered;
-        uint256[] nftIds; // Array to store assigned NFT IDs
     }
 
-    mapping(address => User) public users;
+    mapping(address => UserProfile) public userProfiles;
+    address[] public registeredUsers;  // Array to almacenar las direcciones de los usuarios registrados
     mapping(string => address) private emailToAddress;
 
-    event UserRegistered(address indexed userAddress, string email);
-    event NFTAssigned(address indexed userAddress, uint256 nftId);
+    event UserProfileCreated(
+        address indexed user, 
+        string name,
+        string surname,
+        string country, 
+        string city, 
+        string nationality, 
+        uint256 birthdate, 
+        string email, 
+        string phone, 
+        string description,
+        address walletAddress,
+        bytes32 passwordHash // Agregar el hash de la contraseña al evento
+    );
 
-    constructor(address _reputationNFTAddress) Ownable(msg.sender) {
-        reputationNFT = ReputationNFT(_reputationNFTAddress);
-    }
+    event UserProfileUpdated(
+        address indexed user, 
+        string name,
+        string surname,
+        string country, 
+        string city, 
+        string nationality, 
+        uint256 birthdate, 
+        string email, 
+        string phone, 
+        string description,
+        address walletAddress
+    );
 
-    // Function to register a new user
+    constructor() Ownable(msg.sender) {}
+
+    // Registrar usuario con nuevos campos y wallet
     function registerUser(
         string memory _name,
         string memory _surname,
@@ -43,77 +64,118 @@ contract UserRegistry is Ownable, ReentrancyGuard {
         string memory _nationality,
         uint256 _birthdate,
         string memory _email,
-        bytes32 _passwordHash,
         string memory _phone,
         string memory _description,
-        address _walletAddress
-    ) external onlyOwner nonReentrant {
-        require(!users[_walletAddress].isRegistered, "User already registered");
+        address _walletAddress, // Se genera en el front con ethersjs
+        bytes32 _passwordHash // Agregar el hash de la contraseña como parámetro
+    ) public whenNotPaused {
+        require(!userProfiles[_walletAddress].isRegistered, "User already registered");
         require(emailToAddress[_email] == address(0), "Email already in use");
 
-        users[_walletAddress] = User({
-            name: _name,
-            surname: _surname,
-            country: _country,
-            city: _city,
-            nationality: _nationality,
-            birthdate: _birthdate,
-            email: _email,
-            passwordHash: _passwordHash,
-            phone: _phone,
-            description: _description,
-            walletAddress: _walletAddress,
-            isRegistered: true,
-            nftIds: new uint256[](0)
-        });
+        userProfiles[_walletAddress] = UserProfile(
+            _name,
+            _surname,
+            _country,
+            _city,
+            _nationality,
+            _birthdate,
+            _email,
+            _phone,
+            _description,
+            _walletAddress,
+            _passwordHash, // Almacenar el hash de la contraseña
+            true
+        );
 
         emailToAddress[_email] = _walletAddress;
-
-        emit UserRegistered(_walletAddress, _email);
+        registeredUsers.push(_walletAddress);  // Almacenar la dirección del usuario en el array
+        emit UserProfileCreated(_walletAddress, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress, _passwordHash);
     }
 
-    // Function to assign an NFT to a user
-    function assignNFT(address _userAddress, uint256 _nftId) external onlyOwner {
-        require(users[_userAddress].isRegistered, "User not registered");
-        require(reputationNFT.ownerOf(_nftId) == address(this), "NFT not owned by contract");
-
-        users[_userAddress].nftIds.push(_nftId);
-        reputationNFT.transferFrom(address(this), _userAddress, _nftId);
-
-        emit NFTAssigned(_userAddress, _nftId);
-    }
-
-    // Function to get user's NFT IDs
-    function getUserNFTs(address _userAddress) external view returns (uint256[] memory) {
-        return users[_userAddress].nftIds;
-    }
-
-    // Function to check if a user is registered
     function isUserRegistered(address _userAddress) external view returns (bool) {
-        return users[_userAddress].isRegistered;
+        return userProfiles[_userAddress].isRegistered;
     }
 
-    // Function to get user details (excluding sensitive information)
-    function getUserDetails(address _userAddress) external view returns (
+    // Function to get the address associated with an email
+    function getAddressByEmail(string memory email) public view returns (address) {
+        return emailToAddress[email];
+    }
+
+    
+    // // Actualizar perfil de usuario
+    // function updateUserProfile(
+    //     string memory _name,
+    //     string memory _surname,
+    //     string memory _country,
+    //     string memory _city,
+    //     string memory _nationality,
+    //     uint256 _birthdate,
+    //     string memory _email,
+    //     string memory _phone,
+    //     string memory _description,
+    //     address _walletAddress, // Permitir actualización de wallet
+    //     bytes32 _passwordHash // Agregar el hash de la contraseña para actualizar
+    // ) public whenNotPaused {
+    //     require(userProfiles[msg.sender].isRegistered, "User is not registered");
+    //     userProfiles[msg.sender] = UserProfile(
+    //         _name,
+    //         _surname,
+    //         _country,
+    //         _city,
+    //         _nationality,
+    //         _birthdate,
+    //         _email,
+    //         _phone,
+    //         _description,
+    //         _walletAddress,
+    //         _passwordHash, // Almacenar el hash de la contraseña actualizado
+    //         true
+    //     );
+    //     emit UserProfileUpdated(msg.sender, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress);
+    // }
+
+    // Función para obtener todos los usuarios registrados
+    function getAllUsers() public view returns (address[] memory) {
+        return registeredUsers;
+    }
+
+    // Función para obtener el perfil de un usuario por dirección
+    function getUserProfile(address _user) public view returns (
         string memory name,
         string memory surname,
         string memory country,
         string memory city,
         string memory nationality,
         uint256 birthdate,
+        string memory email,
         string memory phone,
-        string memory description
+        string memory description,
+        address walletAddress
     ) {
-        User storage user = users[_userAddress];
+        UserProfile storage profile = userProfiles[_user];
+        require(profile.isRegistered, "User not registered");
+
         return (
-            user.name,
-            user.surname,
-            user.country,
-            user.city,
-            user.nationality,
-            user.birthdate,
-            user.phone,
-            user.description
+            profile.name,
+            profile.surname,
+            profile.country,
+            profile.city,
+            profile.nationality,
+            profile.birthdate,
+            profile.email,
+            profile.phone,
+            profile.description,
+            profile.walletAddress
         );
     }
+
+    // Funciones pausables
+    function pause() public onlyOwner {
+        _pause();  // Pausa el contrato
+    }
+
+    function unpause() public onlyOwner {
+        _unpause();  // Reanuda el contrato
+    }
+
 }
