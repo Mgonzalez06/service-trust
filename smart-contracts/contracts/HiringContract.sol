@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./UserRegistry.sol";
 import "./JobListing.sol";
@@ -45,7 +45,7 @@ contract HiringContract is Ownable, ReentrancyGuard {
     event AgreementCancelled(uint256 indexed agreementId);
     event PaymentReleased(uint256 indexed agreementId, uint256 amount);
 
-    constructor(address _userRegistryAddress, address _jobListingAddress, address _paymentTokenAddress) {
+    constructor(address _userRegistryAddress, address _jobListingAddress, address _paymentTokenAddress) Ownable(msg.sender){
         userRegistry = UserRegistry(_userRegistryAddress);
         jobListing = JobListing(_jobListingAddress);
         paymentToken = IERC20(_paymentTokenAddress);

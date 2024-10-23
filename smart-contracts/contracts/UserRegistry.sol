@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./ReputationNFT.sol";
 
 contract UserRegistry is Ownable, ReentrancyGuard {
@@ -30,7 +30,7 @@ contract UserRegistry is Ownable, ReentrancyGuard {
     event UserRegistered(address indexed userAddress, string email);
     event NFTAssigned(address indexed userAddress, uint256 nftId);
 
-    constructor(address _reputationNFTAddress) {
+    constructor(address _reputationNFTAddress) Ownable(msg.sender) {
         reputationNFT = ReputationNFT(_reputationNFTAddress);
     }
 

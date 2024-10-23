@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./UserRegistry.sol";
 
 contract JobListing is Ownable, ReentrancyGuard {
@@ -28,7 +28,7 @@ contract JobListing is Ownable, ReentrancyGuard {
     event JobUpdated(uint256 indexed jobId, JobStatus status);
     event JobApplicationSubmitted(uint256 indexed jobId, address indexed applicant);
 
-    constructor(address _userRegistryAddress) {
+    constructor(address _userRegistryAddress) Ownable(msg.sender)  {
         userRegistry = UserRegistry(_userRegistryAddress);
     }
 
