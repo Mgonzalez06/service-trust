@@ -1,1 +1,2 @@
-This is the URL for the video pitch, where you can see our proyect proposal <https://youtu.be/uyWjOxnoP2o?si=sZYhpOPGwqq9SrgY>
+This is the URL for the video pitch, where you can see our proyect proposal 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uyWjOxnoP2o?si=sZYhpOPGwqq9SrgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
