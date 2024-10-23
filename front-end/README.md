@@ -1,115 +1,121 @@
-# 🚀 Job Posting App - React + Material UI
+🚀 Job Posting App - React + Material UI
 
-Este proyecto es una aplicación web donde los empleadores pueden crear publicaciones de trabajo y los empleados pueden visualizar y aplicar a las ofertas disponibles. La aplicación está construida con **React** y estilizada con **Material UI**, proporcionando una interfaz amigable y moderna.
-
-## 🌟 Características principales
-
-- 📝 Creación de publicaciones de trabajo con título, descripción, rango salarial y fecha límite para aplicar.
-- 🔍 Visualización y filtro de publicaciones de trabajo.
-- 🛠️ Interfaz sencilla y responsiva usando **Material UI**.
-- 🎨 NFTs para el rating de los trabajos de calidad realizados.
-  
 ---
 
-## 🛠️ Instalación y configuración
+This project is a web application where employers can create job postings, and employees can view and apply to the available listings. The app is built with React and styled using Material UI, offering a friendly and modern interface.
 
-Sigue estos pasos para instalar y ejecutar el proyecto localmente.
+---
 
-### 1. Clona el repositorio
+🌟 Main Features
+---
+
+📝 Create job postings with title, description, salary range, and application deadline.
+
+🔍 View and filter job postings.
+
+🛠️ Simple, responsive interface using Material UI.
+
+🎨 NFTs for rating high-quality completed jobs.
+
+---
+🛠️ Installation and Setup
+---
+
+Follow these steps to install and run the project locally.
+
+### 1. Clone the repository Clona el repositorio
 
 ```bash
 git clone https://github.com/Mgonzalez06/service-trust.git
 ```
-
-### 2. Navega al directorio del proyecto
+### 2. Navigate to the project directory
 
 ```bash
 cd service-trust
 ```
-
-### 3. Instala las dependencias
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Inicia la aplicación
+### 4. Start the application
 
 ```bash
 npm start
 ```
 
-## 🌿 Estructura del proyecto
-
-El proyecto sigue la siguiente estructura de carpetas:
-
+---
+🌿 Project Structure
+---
+The project follows this folder structure:
 ``` bash
 front-end/
-├── public/                          # Archivos públicos
-├── src/                             # Código fuente del proyecto
-│   ├── components/                  # Componentes de React
-│   │   ├── Applicants/              # Módulo para gestionar los solicitantes
-│   │   │   └── Applicants.jsx       # Listado de los solicitantes
-│   │   ├── ConnectWallet/           # Módulo para conectar la wallet
-│   │   │   └── ConnectWallet.jsx    # Conectar la wallet del usuario
-│   │   ├── CustomTable/             # Tablas personalizadas
-│   │   │   └── CustomTable.jsx      # Componente de tablas personalizadas
-│   │   ├── Dashboard/               # Módulo para el Dashboard
-│   │   │   ├── Dashboard.jsx        # Pantalla principal del dashboard
-│   │   │   ├── Header.jsx           # Encabezado del dashboard
-│   │   │   └── Information.jsx      # Información adicional del dashboard
-│   │   ├── Login/                   # Módulo de inicio de sesión
-│   │   │   └── Login.jsx            # Pantalla de inicio de sesión
-│   │   ├── Modals/                  # Modales de la aplicación
-│   │   │   ├── ApplicantsModal.jsx  # Modal de solicitantes
-│   │   │   ├── CustomModal.jsx      # Modal personalizado
-│   │   │   ├── JobDescriptionModal.jsx  # Modal para la descripción del trabajo
-│   │   │   └── ProfileModal.jsx     # Modal para ver el perfil
-│   │   ├── Posts/                   # Módulo de publicaciones de trabajo
-│   │   │   ├── CreatePost.jsx       # Formulario para crear publicaciones de trabajo
-│   │   │   └── PostPage.jsx         # Página para ver publicaciones de trabajo
-│   │   ├── Profile/                 # Módulo del perfil
-│   │   │   └── ProfilePage.jsx      # Pantalla del perfil del usuario
-│   │   ├── SignUp/                  # Módulo de registro
-│   │   │   └── SignUp.jsx           # Pantalla para registro de usuarios
-│   ├── utils/                       # Utilidades y funciones
-│   │   ├── connectWallet.js         # Funciones para conectar wallet
-│   │   ├── jobListingFunctions.js   # Funciones relacionadas con las publicaciones
-│   │   └── userRegistryFunctions.js # Funciones para el registro de usuarios
-│   ├── App.css                      # Estilos principales
-│   ├── App.js                       # Componente principal de la aplicación
-│   ├── App.test.js                  # Tests de la aplicación
-│   ├── constants.js                 # Constantes usadas en la aplicación
-│   ├── index.css                    # Estilos globales
-│   ├── index.js                     # Punto de entrada de la aplicación
-│   └── reportWebVitals.js           # Herramienta para medir el rendimiento
-└── README.md                        # Documentación del proyecto
-
+├── public/                          # Public files
+├── src/                             # Project source code
+│   ├── components/                  # React components
+│   │   ├── Applicants/              # Applicants management module
+│   │   │   └── Applicants.jsx       # Applicants list
+│   │   ├── ConnectWallet/           # Wallet connection module
+│   │   │   └── ConnectWallet.jsx    # Connect user wallet
+│   │   ├── CustomTable/             # Custom tables
+│   │   │   └── CustomTable.jsx      # Custom table component
+│   │   ├── Dashboard/               # Dashboard module
+│   │   │   ├── Dashboard.jsx        # Main dashboard screen
+│   │   │   ├── Header.jsx           # Dashboard header
+│   │   │   └── Information.jsx      # Additional dashboard information
+│   │   ├── Login/                   # Login module
+│   │   │   └── Login.jsx            # Login screen
+│   │   ├── Modals/                  # App modals
+│   │   │   ├── ApplicantsModal.jsx  # Applicants modal
+│   │   │   ├── CustomModal.jsx      # Custom modal
+│   │   │   ├── JobDescriptionModal.jsx  # Job description modal
+│   │   │   └── ProfileModal.jsx     # Profile view modal
+│   │   ├── Posts/                   # Job postings module
+│   │   │   ├── CreatePost.jsx       # Job posting creation form
+│   │   │   └── PostPage.jsx         # Job posting view page
+│   │   ├── Profile/                 # Profile module
+│   │   │   └── ProfilePage.jsx      # User profile screen
+│   │   ├── SignUp/                  # Sign-up module
+│   │   │   └── SignUp.jsx           # User registration screen
+│   ├── utils/                       # Utilities and functions
+│   │   ├── connectWallet.js         # Wallet connection functions
+│   │   ├── jobListingFunctions.js   # Job listings related functions
+│   │   └── userRegistryFunctions.js # User registration functions
+│   ├── App.css                      # Main styles
+│   ├── App.js                       # Main application component
+│   ├── App.test.js                  # Application tests
+│   ├── constants.js                 # Application constants
+│   ├── index.css                    # Global styles
+│   ├── index.js                     # Application entry point
+│   └── reportWebVitals.js           # Performance measurement tool
+└── README.md                        # Project documentation
 ```
+---
+📦 Main Dependencies
+---
+- React: A JavaScript library for building user interfaces.
+- Material UI: A UI component framework following Material Design guidelines.
+---
+🚀 Available Scripts
+---
+In the project, you can run the following commands:
+- npm start: Starts the development server.
+- npm run build: Builds the app for production into the build folder.
+---
+🔧 Recommended Development Tools
+---
+- VSCode: Code editor.
+- React Developer Tools: Chrome/Firefox extension for debugging React apps.
+---
+🤝 Contributions
+---
 
-## 📦 Dependencias principales
+Contributions are welcome. If you find any issues or have ideas for new features, feel free to open an issue or submit a pull request!
 
-- React: Una biblioteca de JavaScript para construir interfaces de usuario.
-- Material UI: Un framework de componentes de UI que sigue las directrices de Material Design.
+---
 
+📝 License
+---
 
-## 🚀 Scripts disponibles
-
-En el proyecto puedes ejecutar los siguientes comandos:
-
-- npm start: Inicia el servidor de desarrollo.
-- npm run build: Crea una versión optimizada para producción en la carpeta build.
-
-
-## 🔧 Herramientas de desarrollo recomendadas
-
-- VSCode: Editor de código.
-- React Developer Tools: Extensión para Chrome/Firefox para depurar aplicaciones React.
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Si encuentras algún error o tienes ideas para nuevas funcionalidades, ¡no dudes en abrir un issue o enviar un pull request!
-
-## 📝 Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](https://opensource.org/license/mit) para más detalles.
+EThis project is licensed under the MIT License. See the LICENSE file for more details. Consult [LICENSE](https://opensource.org/license/mit) for more details.
