@@ -1,9 +1,14 @@
-import { ethers } from "ethers";
+import { BrowserProvider, Wallet } from "ethers";
 
 export async function connectWallet(connected, setConnected, setWalletAddress) {
   if (!connected) {
-    // Connect the wallet using ethers.js
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    // Verifica si MetaMask está instalada
+    if (!window.ethereum) {
+      throw new Error("MetaMask is not installed.");
+    }
+
+    // Conectar la wallet usando ethers.js
+    const provider = new BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     const _walletAddress = await signer.getAddress();
     setConnected(true);
@@ -16,7 +21,7 @@ export async function connectWallet(connected, setConnected, setWalletAddress) {
 }
 
 export function createNewWallet() {
-  const wallet = ethers.Wallet.createRandom();
+  const wallet = Wallet.createRandom();
 
   const address = wallet.address;
   const privateKey = wallet.privateKey;

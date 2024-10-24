@@ -42,6 +42,10 @@ export const ProfilePage = () => {
         <Typography variant="body1" align="center" paragraph>
           {profileStub.description}
         </Typography>
+        <Typography variant="body2" align="center">
+          {profileStub.skills}
+        </Typography>
+
         <Typography
           variant="body1"
           fontWeight="bold"

@@ -1,0 +1,46 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Personalización adicional según App.css */
+body {
+  min-height: 100vh;
+  text-align: center;
+  background-color: var(--tw-bg-opacity) rgb(207 245 255); /* Reflejar #cff5ff */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    @apply animate-App-logo-spin;
+  }
+}
+
+.App-link {
+  color: rgb(97 218 251); /* Reflejar #61dafb */
+}
+
+/* Otros estilos globales */
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+.btn {
+  @apply shadow-md;
+}
+
+.btn.btn-ghost {
+  @apply shadow-none;
+}

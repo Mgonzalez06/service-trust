@@ -7,6 +7,7 @@ const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.27",
+<<<<<<< Updated upstream
   
   defaultNetwork: "localhost",  // Set the default network to localhost
   networks: {
@@ -34,3 +35,9 @@ module.exports = {
     enabled: false,
   },
 };
+=======
+  networks: {
+    hardhat: {},
+  }
+};
+>>>>>>> Stashed changes

@@ -19,20 +19,20 @@ export const JobPostForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Publicación de trabajo creada:', formData);
-    alert('Publicación de trabajo creada con éxito!');
+    console.log('Job post created:', formData);
+    alert('Job post created successfully!');
   };
 
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} style={{ padding: '20px', marginTop: '30px' }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Crear Publicación de Trabajo
+          New Job Post
         </Typography>
 
         <form onSubmit={handleSubmit}>
           <TextField
-            label="Título del Trabajo"
+            label="Job title"
             name="title"
             value={formData.title}
             onChange={handleChange}
@@ -42,7 +42,7 @@ export const JobPostForm = () => {
           />
 
           <TextField
-            label="Descripción"
+            label="Description"
             name="description"
             value={formData.description}
             onChange={handleChange}
@@ -54,7 +54,7 @@ export const JobPostForm = () => {
           />
 
           <TextField
-            label="Rango Salarial"
+            label="Salary Range"
             name="salaryRange"
             value={formData.salaryRange}
             onChange={handleChange}
@@ -62,24 +62,9 @@ export const JobPostForm = () => {
             margin="normal"
             required
           />
-
-          <TextField
-            label="Fecha Límite para Aplicar"
-            name="deadline"
-            type="date"
-            value={formData.deadline}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            required
-          />
-
           <Box display="flex" justifyContent="center" mt={3}>
             <Button type="submit" variant="contained" color="primary">
-              Crear Publicación
+              Create Post
             </Button>
           </Box>
         </form>

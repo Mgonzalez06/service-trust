@@ -46,3 +46,4 @@ export const CustomTable = ({ columns, data }) => {
     </TableContainer>
   );
 };
+
