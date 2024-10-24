@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
@@ -15,12 +15,14 @@ contract UserRegistry is Ownable, Pausable {
         string email;
         string phone;
         string description;
-        address walletAddress; ////se genera en el front con ethersjs
+        address walletAddress; // Se genera en el front con ethersjs
+        string passwordHash; // Almacena el hash de la contraseña
         bool isRegistered;
     }
 
     mapping(address => UserProfile) public userProfiles;
-    address[] public registeredUsers;  // Array to store addresses of registered users
+    address[] public registeredUsers;  // Array to almacenar las direcciones de los usuarios registrados
+    mapping(string => address) private emailToAddress;
 
     event UserProfileCreated(
         address indexed user, 
@@ -33,7 +35,8 @@ contract UserRegistry is Ownable, Pausable {
         string email, 
         string phone, 
         string description,
-        address walletAddress
+        address walletAddress,
+        string passwordHash 
     );
 
     event UserProfileUpdated(
@@ -63,11 +66,13 @@ contract UserRegistry is Ownable, Pausable {
         string memory _email,
         string memory _phone,
         string memory _description,
-        address _walletAddress  //se genera en el front con ethersjs
+        address _walletAddress,
+        string memory _passwordHash 
     ) public whenNotPaused {
-        require(!userProfiles[msg.sender].isRegistered, "User already registered");
+        require(!userProfiles[_walletAddress].isRegistered, "User already registered");
+        require(emailToAddress[_email] == address(0), "Email already in use");
 
-        userProfiles[msg.sender] = UserProfile(
+        userProfiles[_walletAddress] = UserProfile(
             _name,
             _surname,
             _country,
@@ -78,49 +83,63 @@ contract UserRegistry is Ownable, Pausable {
             _phone,
             _description,
             _walletAddress,
+            _passwordHash, // Almacenar el hash de la contraseña
             true
         );
 
-        registeredUsers.push(msg.sender);  // Store the user's address in the array
-        emit UserProfileCreated(msg.sender, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress);
+        emailToAddress[_email] = _walletAddress;
+        registeredUsers.push(_walletAddress);  // Almacenar la dirección del usuario en el array
+        emit UserProfileCreated(_walletAddress, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress, _passwordHash);
     }
 
-    // Actualizar perfil de usuario
-    function updateUserProfile(
-        string memory _name,
-        string memory _surname,
-        string memory _country,
-        string memory _city,
-        string memory _nationality,
-        uint256 _birthdate,
-        string memory _email,
-        string memory _phone,
-        string memory _description,
-        address _walletAddress  // Permitir actualización de wallet
-    ) public whenNotPaused {
-        require(userProfiles[msg.sender].isRegistered, "User is not registered");
-        userProfiles[msg.sender] = UserProfile(
-            _name,
-            _surname,
-            _country,
-            _city,
-            _nationality,
-            _birthdate,
-            _email,
-            _phone,
-            _description,
-            _walletAddress,
-            true
-        );
-        emit UserProfileUpdated(msg.sender, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress);
+    function isUserRegistered(address _userAddress) external view returns (bool) {
+        return userProfiles[_userAddress].isRegistered;
     }
 
-    // Function to get all registered users
+    // Function to get the address associated with an email
+    function getAddressByEmail(string memory email) public view returns (address) {
+        return emailToAddress[email];
+    }
+
+    
+    // // Actualizar perfil de usuario
+    // function updateUserProfile(
+    //     string memory _name,
+    //     string memory _surname,
+    //     string memory _country,
+    //     string memory _city,
+    //     string memory _nationality,
+    //     uint256 _birthdate,
+    //     string memory _email,
+    //     string memory _phone,
+    //     string memory _description,
+    //     address _walletAddress, // Permitir actualización de wallet
+    //     bytes32 _passwordHash // Agregar el hash de la contraseña para actualizar
+    // ) public whenNotPaused {
+    //     require(userProfiles[msg.sender].isRegistered, "User is not registered");
+    //     userProfiles[msg.sender] = UserProfile(
+    //         _name,
+    //         _surname,
+    //         _country,
+    //         _city,
+    //         _nationality,
+    //         _birthdate,
+    //         _email,
+    //         _phone,
+    //         _description,
+    //         _walletAddress,
+    //         _passwordHash, // Almacenar el hash de la contraseña actualizado
+    //         true
+    //     );
+    //     emit UserProfileUpdated(msg.sender, _name, _surname, _country, _city, _nationality, _birthdate, _email, _phone, _description, _walletAddress);
+    // }
+
+    // Función para obtener todos los usuarios registrados
     function getAllUsers() public view returns (address[] memory) {
         return registeredUsers;
     }
 
-    // Function to get a user profile by address
+    // Función para obtener el perfil de un usuario por dirección
     function getUserProfile(address _user) public view returns (
         string memory name,
         string memory surname,
@@ -150,7 +169,7 @@ contract UserRegistry is Ownable, Pausable {
         );
     }
 
-    // Pausable functions
+    // Funciones pausables
     function pause() public onlyOwner {
         _pause();  // Pausa el contrato
     }
@@ -158,7 +177,5 @@ contract UserRegistry is Ownable, Pausable {
     function unpause() public onlyOwner {
         _unpause();  // Reanuda el contrato
     }
-
-    // PENDING: store reputation NFTs linked to that contract/wallet
 
 }
