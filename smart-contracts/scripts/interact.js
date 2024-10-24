@@ -6,16 +6,16 @@ async function main() {
     const userRegistry = UserRegistry.attach(contractAddress);
 
     // Parámetros para la prueba
-    const name = "Juan";
-    const surname = "Pérez";
+    const name = "Jonathan";
+    const surname = "Gamboa";
     const country = "Costa Rica";
     const city = "San José";
-    const nationality = "Costarricense";
+    const nationality = "Costarricense"
     const birthdate = 1234567890; 
-    const email = "juan.perez@example.com"; 
-    const passwordHash = "0x2748f3f7d035b771b3f93283c2b26bb177f7e6fd7a9f6bcd1f363909b2d5b952"; 
-    const phone = "12345678";
-    const walletAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"; 
+    const email = "jongamboa@example.com"; 
+    const passwordHash = "passsword123"; 
+    const phone = "88332244";
+    const walletAddress = "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199"; 
 
     try {
         const tx = await userRegistry.registerUser(
