@@ -111,9 +111,10 @@ In the project, you can run the following commands:
 - VSCode: Code editor.
 - React Developer Tools: Chrome/Firefox extension for debugging React apps.
 ---
+🎥 Please Access our Video
+---
+[![Alt text](https://img.youtube.com/vi/uyWjOxnoP2o/0.jpg)](https://www.youtube.com/watch?v=uyWjOxnoP2o)
 
-  This is the URL for the video pitch, where you can see our proyect proposal 
-https://youtu.be/uyWjOxnoP2o?si=zkjm2fCPMBMevaUh
 ---
 🤝 Contributions
 ---
