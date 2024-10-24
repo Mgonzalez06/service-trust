@@ -16,7 +16,7 @@ contract UserRegistry is Ownable, Pausable {
         string phone;
         string description;
         address walletAddress; // Se genera en el front con ethersjs
-        bytes32 passwordHash; // Almacena el hash de la contraseña
+        string passwordHash; // Almacena el hash de la contraseña
         bool isRegistered;
     }
 
@@ -36,7 +36,7 @@ contract UserRegistry is Ownable, Pausable {
         string phone, 
         string description,
         address walletAddress,
-        bytes32 passwordHash // Agregar el hash de la contraseña al evento
+        string passwordHash 
     );
 
     event UserProfileUpdated(
@@ -66,8 +66,8 @@ contract UserRegistry is Ownable, Pausable {
         string memory _email,
         string memory _phone,
         string memory _description,
-        address _walletAddress, // Se genera en el front con ethersjs
-        bytes32 _passwordHash // Agregar el hash de la contraseña como parámetro
+        address _walletAddress,
+        string memory _passwordHash 
     ) public whenNotPaused {
         require(!userProfiles[_walletAddress].isRegistered, "User already registered");
         require(emailToAddress[_email] == address(0), "Email already in use");
