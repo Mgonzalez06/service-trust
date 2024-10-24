@@ -1,5 +1,5 @@
 
-
+[![](https://markdown-videos.deta.dev/youtube/NarBox1LkYc)](https://youtu.be/NarBox1LkYc)
 
 ###  🚀 Job Posting App - React + Material UI
 
@@ -110,6 +110,10 @@ In the project, you can run the following commands:
 ---
 - VSCode: Code editor.
 - React Developer Tools: Chrome/Firefox extension for debugging React apps.
+---
+
+  This is the URL for the video pitch, where you can see our proyect proposal 
+https://youtu.be/uyWjOxnoP2o?si=zkjm2fCPMBMevaUh
 ---
 🤝 Contributions
 ---
