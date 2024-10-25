@@ -1,44 +1,83 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { Contract } from "ethers";
 
-/**
- * Deploys a contract named "YourContract" using the deployer account and
- * constructor arguments set to the deployer address
- *
- * @param hre HardhatRuntimeEnvironment object.
- */
-const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  /*
-    On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
+const deployContracts: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  await deployReputationNFT(hre);
+  await deployUserRegistry(hre);
+  await deployJobListing(hre);
+  await deployHiringContract(hre);
+};
 
-    When deploying to live networks (e.g `yarn deploy --network sepolia`), the deployer account
-    should have sufficient balance to pay for the gas fees for contract creation.
-
-    You can generate a random account with `yarn generate` which will fill DEPLOYER_PRIVATE_KEY
-    with a random private key in the .env file (then used on hardhat.config.ts)
-    You can run the `yarn account` command to check your balance in every network.
-  */
+const deployReputationNFT: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("UserRegistry", {
+  const reputationNFTDeployment = await deploy("ReputationNFT", {
     from: deployer,
-    // Contract constructor arguments
     args: [],
     log: true,
-    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-    // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
-
-  // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>("UserRegistry", deployer);
-  console.log("Deployed at address:", await yourContract.getAddress());
+  const reputationNFTAddress = reputationNFTDeployment.address;
+  console.log("---> ReputationNFT deployed at address:", reputationNFTAddress);
 };
 
-export default deployYourContract;
+const deployUserRegistry: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  const { deployer } = await hre.getNamedAccounts();
+  const { deploy } = hre.deployments;
 
-// Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["UserRegistry"];
+  const userRegistryDeployment = await deploy("UserRegistry", {
+    from: deployer,
+    args: [],
+    log: true,
+    autoMine: true,
+  });
+  const userRegistryAddress = userRegistryDeployment.address;
+  console.log("---> UserRegistry deployed at address:", userRegistryAddress);
+};
+
+const deployJobListing: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  const { deployer } = await hre.getNamedAccounts();
+  const { deploy } = hre.deployments;
+
+  const userRegistryAddress = (await hre.deployments.get("UserRegistry")).address;
+
+  const jobListingDeployment = await deploy("JobListing", {
+    from: deployer,
+    args: [userRegistryAddress],
+    log: true,
+    autoMine: true,
+  });
+  const jobListingAddress = jobListingDeployment.address;
+  console.log("---> JobListing deployed at address:", jobListingAddress);
+};
+
+const deployHiringContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  const { deployer } = await hre.getNamedAccounts();
+  const { deploy } = hre.deployments;
+
+  const userRegistryAddress = (await hre.deployments.get("UserRegistry")).address;
+  const jobListingAddress = (await hre.deployments.get("JobListing")).address;
+  const reputationNFTAddress = (await hre.deployments.get("ReputationNFT")).address;
+
+  const hiringContractDeployment = await deploy("HiringContract", {
+    from: deployer,
+    args: [userRegistryAddress, jobListingAddress, reputationNFTAddress],
+    log: true,
+    autoMine: true,
+  });
+  const hiringContractAddress = hiringContractDeployment.address;
+  console.log("---> HiringContract deployed at address:", hiringContractAddress);
+};
+
+// Exportar la función principal y asignar el tag
+export default deployContracts;
+
+// Tags para cada despliegue individual
+deployReputationNFT.tags = ["ReputationNFT"];
+deployUserRegistry.tags = ["UserRegistry"];
+deployJobListing.tags = ["JobListing"];
+deployHiringContract.tags = ["HiringContract"];
+
+// Tag para desplegar todos los contratos
+deployContracts.tags = ["AllContracts"];

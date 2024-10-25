@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.27;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
@@ -16,7 +16,7 @@ contract UserRegistry is Ownable, Pausable {
         string phone;
         string description;
         address walletAddress; // Se genera en el front con ethersjs
-        string passwordHash; // Almacena el hash de la contraseña
+        string passwordHash;
         bool isRegistered;
     }
 
