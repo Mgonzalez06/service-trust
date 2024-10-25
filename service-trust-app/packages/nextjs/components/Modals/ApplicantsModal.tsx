@@ -7,6 +7,7 @@ import { Applicants } from "~~/components/Applicants/Applicants";
 interface ApplicantsModalProps {
   open: boolean;
   handleClose: () => void;
+  applicants: any[] | undefined;
 }
 
 export const ApplicantsModal: FC<ApplicantsModalProps> = ({ open, handleClose }) => {

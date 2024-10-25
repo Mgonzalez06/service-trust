@@ -5,9 +5,14 @@ import { CustomModal } from "./CustomModal";
 import { FC } from "react";
 
 interface Job {
+  id: number;
   title: string;
-  description: string;
-  salary: string;
+  startDate: string;
+  status: string;
+  client: string;
+  applicants?: any[];
+  description: string,
+  salary: number;
 }
 
 interface JobDescriptionModalProps {
