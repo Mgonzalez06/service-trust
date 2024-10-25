@@ -9,10 +9,12 @@ type HeaderItem = {
 };
 
 const headerItems: HeaderItem[] = [
+  { title: "My Profile", link: "/profile" },
   { title: "Home", link: "/dashboard" },
   { title: "Posts", link: "/posts" },
   { title: "About", link: "" },
   { title: "Contact", link: "" },
+  { title: "Login", link: "/login" },
 ];
 
 export const Header: React.FC = () => {
