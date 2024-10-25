@@ -7,6 +7,8 @@ import home from "~~/public/home.png";
 import { Header } from "~~/components/Header";
 import { Information } from "~~/components/Information";
 import { JobDescriptionModal } from "~~/components/Modals/JobDescriptionModal";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export const BlueContainer = styled(Box)(() => ({
   backgroundColor: "#00244a",
@@ -50,6 +52,12 @@ const SignUpButton = styled(Button)(() => ({
 }));
 
 const Dashboard: React.FC = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/dashboard');
+  }, []);
+
   return (
     <Box height="100vh">
       <BlueContainer>

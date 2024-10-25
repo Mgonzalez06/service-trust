@@ -9,9 +9,9 @@ import {
   Box,
   styled,
 } from "@mui/material";
-import { useRouter } from "next/navigation"; // Usar enrutamiento de Next.js
-import { useEffect } from "react";
-import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 const BlueContainer = styled(Box)(() => ({
     backgroundColor: "#00244a",
@@ -23,34 +23,37 @@ const BlueContainer = styled(Box)(() => ({
 
 const Login: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
-  const router = useRouter(); // Hook de Next.js para la navegación
-  const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract("UserRegistry");
- 
-  useEffect(() => {
-    router.push('/login');
-  }, []);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleSignUpClick = () => {
     router.push("/sign-up");
   };
 
   const handleLoginClick = async () => {
-    // try{
-    //   const response = await writeYourContractAsync({
-    //     functionName: "getUserProfile",
-    //     args: [
-    //       email,
-    //     ]
-    //   });
+    try{
+      const { data: userProfile } = await useScaffoldReadContract({
+        contractName: "UserRegistry",
+        functionName: "getUserProfile",
+        args: [
+          email,
+        ]
+      });
 
-    //   if response.password === password {
-    //     router.push("/dashboard");
-    //   } else {
-    //     console.error("Invalid password");
-    //   }
-    // } catch (e) {
-    //   console.error("Error registering user:", e);
-    // }
+      if (!userProfile) {
+        console.error("User not found");
+        return;
+      }
+
+      if (userProfile[10] === password) {
+        router.push("/posts");
+      } else {
+        console.error("Invalid password");
+      }
+    } catch (e) {
+      console.error("Error logging in", e);
+    }
   };
 
   return (
@@ -83,16 +86,16 @@ const Login: React.FC = () => {
           >
             Login
           </Typography>
-          <Typography variant="body1" mt={4} sx={{ color: "black" }}>
+          <Typography variant="body1" mt={4} sx={{ color: "black" }} >
             Email
           </Typography>
-          <Input type="email" />
+          <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <Typography variant="body1" mt={2} sx={{ color: "black" }}>
             Password
           </Typography>
-          <Input type="password" />
+          <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Box display="flex" justifyContent="center" mt={2}>
-            <Button variant="contained">Login</Button>
+            <Button variant="contained" onClick={handleLoginClick}>Login</Button>
           </Box>
           <Typography
             variant="body2"
