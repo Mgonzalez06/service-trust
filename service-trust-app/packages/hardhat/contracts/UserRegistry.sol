@@ -140,7 +140,7 @@ contract UserRegistry is Ownable, Pausable {
     }
 
     // Función para obtener el perfil de un usuario por dirección
-    function getUserProfile(address _user) public view returns (
+    function getUserProfile(string memory _email) public view returns (
         string memory name,
         string memory surname,
         string memory country,
@@ -150,10 +150,12 @@ contract UserRegistry is Ownable, Pausable {
         string memory email,
         string memory phone,
         string memory description,
-        address walletAddress
+        address walletAddress,
+        string memory passwordHash
     ) {
-        UserProfile storage profile = userProfiles[_user];
-        require(profile.isRegistered, "User not registered");
+        address userAddress = emailToAddress[_email];
+        UserProfile storage profile = userProfiles[userAddress]; // Obtener el perfil del usuario
+    require(profile.isRegistered, "User not registered");
 
         return (
             profile.name,
@@ -165,7 +167,8 @@ contract UserRegistry is Ownable, Pausable {
             profile.email,
             profile.phone,
             profile.description,
-            profile.walletAddress
+            profile.walletAddress,
+            profile.passwordHash
         );
     }
 
