@@ -8,7 +8,7 @@ import { Header } from "~~/components/Header";
 import { Information } from "~~/components/Information";
 import { JobDescriptionModal } from "~~/components/Modals/JobDescriptionModal";
 
-const BlueContainer = styled(Box)(() => ({
+export const BlueContainer = styled(Box)(() => ({
   backgroundColor: "#00244a",
   height: "150px",
   textAlign: "center",

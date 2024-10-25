@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     HiringContract: {
-      address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
+      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
       abi: [
         {
           inputs: [
@@ -476,7 +476,7 @@ const deployedContracts = {
       },
     },
     JobListing: {
-      address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
+      address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
       abi: [
         {
           inputs: [
@@ -874,7 +874,7 @@ const deployedContracts = {
       },
     },
     ReputationNFT: {
-      address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       abi: [
         {
           inputs: [],
@@ -1563,7 +1563,7 @@ const deployedContracts = {
       },
     },
     UserRegistry: {
-      address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
       abi: [
         {
           inputs: [],
@@ -1834,9 +1834,9 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "address",
-              name: "_user",
-              type: "address",
+              internalType: "string",
+              name: "_email",
+              type: "string",
             },
           ],
           name: "getUserProfile",
@@ -1890,6 +1890,11 @@ const deployedContracts = {
               internalType: "address",
               name: "walletAddress",
               type: "address",
+            },
+            {
+              internalType: "string",
+              name: "passwordHash",
+              type: "string",
             },
           ],
           stateMutability: "view",

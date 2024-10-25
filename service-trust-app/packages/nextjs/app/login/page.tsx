@@ -10,6 +10,8 @@ import {
   styled,
 } from "@mui/material";
 import { useRouter } from "next/navigation"; // Usar enrutamiento de Next.js
+import { useEffect } from "react";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const BlueContainer = styled(Box)(() => ({
     backgroundColor: "#00244a",
@@ -22,9 +24,33 @@ const BlueContainer = styled(Box)(() => ({
 const Login: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
   const router = useRouter(); // Hook de Next.js para la navegación
+  const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract("UserRegistry");
+ 
+  useEffect(() => {
+    router.push('/login');
+  }, []);
 
   const handleSignUpClick = () => {
     router.push("/sign-up");
+  };
+
+  const handleLoginClick = async () => {
+    // try{
+    //   const response = await writeYourContractAsync({
+    //     functionName: "getUserProfile",
+    //     args: [
+    //       email,
+    //     ]
+    //   });
+
+    //   if response.password === password {
+    //     router.push("/dashboard");
+    //   } else {
+    //     console.error("Invalid password");
+    //   }
+    // } catch (e) {
+    //   console.error("Error registering user:", e);
+    // }
   };
 
   return (

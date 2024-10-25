@@ -13,7 +13,6 @@ const headerItems: HeaderItem[] = [
   { title: "Posts", link: "/posts" },
   { title: "About", link: "" },
   { title: "Contact", link: "" },
-  { title: "Login", link: "/login" },
 ];
 
 export const Header: React.FC = () => {
