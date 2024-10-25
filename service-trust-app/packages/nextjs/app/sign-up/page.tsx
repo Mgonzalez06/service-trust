@@ -122,17 +122,15 @@ const SignUp: React.FC = () => {
         args: [
           name,
           lastName,
-          password,
           country,
           city,
-          //@ts-ignore
-          //nationality,
-          BigInt(123456789),
-          birthdate,
+          nationality,
+          BigInt(1144551),
           email,
           phone,
-          //skills.toString()],
-          "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          skills.toString(),
+          "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+          password,
         ]
       });
     } catch (e) {
