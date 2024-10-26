@@ -61,8 +61,7 @@ In today's fragmented and disconnected caregiver market, trust deficits hinder h
 - **Backend**: Built on Base blockchain to handle tenure, reputation NFTs, and P2P payments
 
 ## Video Pitch
-
-[![Watch the video](https://img.youtube.com/vi/uyWjOxnoP2o/maxresdefault.jpg)](https://www.youtube.com/watch?v=uyWjOxnoP2o)
+ ```https://youtu.be/uyWjOxnoP2o?si=gTA2Tl7TNY4DMSrn ```
 
 ## Installation
 
