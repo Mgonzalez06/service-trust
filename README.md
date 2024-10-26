@@ -58,9 +58,11 @@ In today's fragmented and disconnected caregiver market, trust deficits hinder h
 
 ## Project Structure
 
-#### to be completed...
-
 - **Backend**: Built on Base blockchain to handle tenure, reputation NFTs, and P2P payments
+
+## Project Structure
+
+[![Watch the video](https://img.youtube.com/vi/uyWjOxnoP2o/maxresdefault.jpg)](https://www.youtube.com/watch?v=uyWjOxnoP2o)
 
 ## Installation
 
